@@ -1,109 +1,261 @@
 <!DOCTYPE html>
+
 <html lang="vi">
+
 <head>
-<meta charset="UTF-8">
-<title>Dương Lê Ngọc Nam</title>
 
-<style>
-body {
-    margin: 0;
-    font-family: "Times New Roman", serif;
-}
+    <meta charset="UTF-8">
 
-/* Layout */
-.container {
-    display: flex;
-    height: 100vh;
-}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* Sidebar */
-.sidebar {
-    width: 300px;
-    border-right: 1px solid #ccc;
-    padding: 15px;
-    overflow-y: auto;
-}
+    <title>Thư Viện Tài Liệu Học Tập</title>
 
-.sidebar h2 {
-    margin-top: 0;
-}
+    
 
-.sidebar input {
-    width: 100%;
-    padding: 6px;
-    margin-bottom: 10px;
-}
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
 
-/* Viewer */
-.viewer {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
-/* Toolbar */
-.toolbar {
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    background: #f5f5f5;
-}
+    
 
-iframe {
-    flex: 1;
-    width: 100%;
-    border: none;
-}
-</style>
+    <style>
+
+        :root {
+
+            --primary-color: #2c3e50;
+
+            --accent-color: #3498db;
+
+            --bg-color: #f4f7f6;
+
+        }
+
+
+
+        body {
+
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+            line-height: 1.6;
+
+            margin: 0;
+
+            background-color: var(--bg-color);
+
+            color: #333;
+
+        }
+
+
+
+        header {
+
+            background: var(--primary-color);
+
+            color: white;
+
+            padding: 2rem 1rem;
+
+            text-align: center;
+
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+        }
+
+
+
+        .container {
+
+            max-width: 900px;
+
+            margin: 20px auto;
+
+            padding: 20px;
+
+            background: white;
+
+            border-radius: 8px;
+
+            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+
+        }
+
+
+
+        h2 {
+
+            color: var(--primary-color);
+
+            border-bottom: 2px solid var(--accent-color);
+
+            padding-bottom: 5px;
+
+        }
+
+
+
+        .doc-item {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 15px;
+
+            border-bottom: 1px solid #eee;
+
+            transition: background 0.3s;
+
+        }
+
+
+
+        .doc-item:hover {
+
+            background: #f9f9f9;
+
+        }
+
+
+
+        .btn-download {
+
+            background-color: var(--accent-color);
+
+            color: white;
+
+            text-decoration: none;
+
+            padding: 8px 15px;
+
+            border-radius: 5px;
+
+            font-size: 0.9rem;
+
+            transition: opacity 0.3;
+
+        }
+
+
+
+        .btn-download:hover {
+
+            opacity: 0.8;
+
+        }
+
+
+
+        .formula-box {
+
+            background: #eef2f3;
+
+            padding: 15px;
+
+            border-left: 5px solid var(--accent-color);
+
+            margin: 20px 0;
+
+        }
+
+
+
+        footer {
+
+            text-align: center;
+
+            padding: 20px;
+
+            font-size: 0.8rem;
+
+            color: #7f8c8d;
+
+        }
+
+    </style>
+
 </head>
 
 <body>
 
+
+
+<header>
+
+    <h1>📚 Kho Tài Liệu Học Tập</h1>
+
+    <p>Nơi tổng hợp bài giảng và đề thi dành cho học sinh</p>
+
+</header>
+
+
+
 <div class="container">
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <h2>📚 Tài liệu</h2>
+    <h2>📌 Thông báo mới</h2>
 
-        <input type="text" placeholder="Tìm..." onkeyup="searchDocs()" id="search">
+    <p>Chào mừng các em! Các tài liệu dưới đây được cập nhật thường xuyên. Hãy tải về để ôn tập tốt nhất.</p>
 
-        <ul id="docs">
-            <li><a href="#" onclick="openPDF('folder/Hinh hoc va do luong - font moi.pdf')">📄 Đại số đại cương</a></li>
-            <li><a href="#" onclick="openPDF('files/xacsuat.pdf')">📄 Xác suất</a></li>
-            <li><a href="#" onclick="openPDF('files/nhom.pdf')">📄 Nhóm và nửa nhóm</a></li>
-        </ul>
+
+
+    <h2>📂 Tài liệu môn Toán</h2>
+
+    
+
+    <div class="doc-item">
+
+        <span>1. Chuyên đề Hàm số (File PDF)</span>
+
+        <a href="duong-dan-den-file-cua-ban.pdf" class="btn-download">Tải xuống</a>
+
     </div>
 
-    <!-- VIEWER -->
-    <div class="viewer">
 
-        <div class="toolbar">
-            <span id="title">Chọn tài liệu để xem</span>
-        </div>
 
-        <iframe id="pdfViewer"></iframe>
+    <div class="doc-item">
+
+        <span>2. Đề thi thử học kỳ I - Lớp 12</span>
+
+        <a href="#" class="btn-download">Xem chi tiết</a>
+
+    </div>
+
+
+
+    <div class="formula-box">
+
+        <strong>Ghi nhớ công thức:</strong>
+
+        <p>Tích phân từng phần: $$\int u \, dv = uv - \int v \, du$$</p>
+
+    </div>
+
+
+
+    <h2>📂 Tài liệu tham khảo khác</h2>
+
+    <div class="doc-item">
+
+        <span>Bài tập bổ trợ Vector</span>
+
+        <a href="#" class="btn-download">Tải về</a>
 
     </div>
 
 </div>
 
-<script>
-function openPDF(file) {
-    document.getElementById("pdfViewer").src = file;
 
-    // cập nhật tiêu đề
-    document.getElementById("title").innerText = file.split('/').pop();
-}
 
-function searchDocs() {
-    let input = document.getElementById("search").value.toLowerCase();
-    let items = document.getElementById("docs").getElementsByTagName("li");
+<footer>
 
-    for (let i = 0; i < items.length; i++) {
-        let text = items[i].innerText.toLowerCase();
-        items[i].style.display = text.includes(input) ? "" : "none";
-    }
-}
-</script>
+    <p>&copy; 2026 Trang web học tập cá nhân. Được xây dựng trên nền tảng GitHub Pages.</p>
+
+</footer>
+
+
 
 </body>
+
 </html>
