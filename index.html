@@ -1,64 +1,112 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Trang cá nhân - Dương Lê Ngọc Nam</title>
+<meta charset="UTF-8">
+<title>Dương Lê Ngọc Nam</title>
+
+<style>
+body {
+    font-family: "Times New Roman", serif;
+    max-width: 900px;
+    margin: auto;
+    line-height: 1.6;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #ccc;
+}
+
+nav a {
+    margin-right: 15px;
+    color: blue;
+    cursor: pointer;
+}
+
+.section {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+}
+</style>
 </head>
 
-<body style="font-family: Times New Roman; max-width: 800px; margin: auto;">
+<body>
 
 <h1>Dương Lê Ngọc Nam</h1>
 
 <p>
 Giảng viên Toán học <br>
-Quan tâm: Đại số giao hoán, mô-đun, vành Noether <br>
+Hướng nghiên cứu: Đại số giao hoán, module, vành Noether
 </p>
 
-<hr>
-
-<h2>📌 Thông tin liên hệ</h2>
-<p>
-Email: your-email@gmail.com <br>
-</p>
-
-<hr>
-
-<h2>📂 Tài liệu giảng dạy</h2>
-
-<ul>
-<li><a href="files/daiso.pdf">Bài giảng Đại số đại cương</a></li>
-<li><a href="files/xacsuat.pdf">Bài tập xác suất</a></li>
-</ul>
+<nav>
+    <a onclick="show('home')">Trang chủ</a>
+    <a onclick="show('teaching')">Giảng dạy</a>
+    <a onclick="show('research')">Nghiên cứu</a>
+    <a onclick="show('notes')">Ghi chú</a>
+</nav>
 
 <hr>
 
-<h2>📄 Bài viết nghiên cứu</h2>
+<div id="home" class="section active">
+    <h2>Giới thiệu</h2>
+    <p>Trang cá nhân chia sẻ tài liệu và nghiên cứu.</p>
+</div>
 
-<ul>
-<li><a href="#">Một số kết quả về mô-đun</a></li>
-<li><a href="#">Tensor và độ dài</a></li>
-</ul>
+<div id="teaching" class="section">
+    <h2>Tài liệu giảng dạy</h2>
+
+    <input type="text" id="search" placeholder="Tìm tài liệu..." onkeyup="searchDocs()">
+
+    <ul id="docs">
+        <li>Đại số đại cương - <a href="files/daiso.pdf">Tải</a></li>
+        <li>Xác suất - <a href="files/xacsuat.pdf">Tải</a></li>
+    </ul>
+</div>
+
+<div id="research" class="section">
+    <h2>Nghiên cứu</h2>
+    <ul>
+        <li>Độ dài mô-đun</li>
+        <li>Flat extension</li>
+    </ul>
+</div>
+
+<div id="notes" class="section">
+    <h2>Ghi chú</h2>
+    <ul>
+        <li>Vành địa phương</li>
+    </ul>
+</div>
 
 <hr>
 
-<h2>📚 Ghi chú học tập</h2>
+<p>© 2026</p>
 
-<ul>
-<li><a href="#">Vành địa phương</a></li>
-<li><a href="#">Ideal nguyên tố</a></li>
-</ul>
+<script>
+function show(id) {
+    let sections = document.getElementsByClassName("section");
+    for (let s of sections) s.classList.remove("active");
+    document.getElementById(id).classList.add("active");
+}
 
-<hr>
+function searchDocs() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let items = document.getElementById("docs").getElementsByTagName("li");
 
-<h2>🔗 Liên kết</h2>
-
-<ul>
-<li><a href="https://github.com/">GitHub</a></li>
-</ul>
-
-<hr>
-
-<p><i>Cập nhật lần cuối: 2026</i></p>
+    for (let i = 0; i < items.length; i++) {
+        let text = items[i].innerText.toLowerCase();
+        items[i].style.display = text.includes(input) ? "" : "none";
+    }
+}
+</script>
 
 </body>
 </html>
