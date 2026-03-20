@@ -5,16 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thư Viện Toán Học</title>
 
+<!-- ICON (Font Awesome) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 <style>
+/* ================== CẤU HÌNH MÀU ================== */
 :root{
-  --primary:#1e293b;
-  --accent:#3b82f6;
-  --white:#ffffff;
-  --bg:#eef2f7;
+  --primary:#1e293b;   /* Màu chính (header, chữ chính) */
+  --accent:#3b82f6;    /* Màu nhấn (hover, button) */
+  --white:#ffffff;     /* Màu nền card */
+  --bg:#eef2f7;        /* Màu nền toàn trang */
 }
-
+/* ================== CẤU TRÚC CHUNG ================== */
 body{
   margin:0;
   font-family:system-ui;
@@ -24,25 +25,28 @@ body{
   min-height:100vh;
 }
 
+/* ================== HEADER ================== */
 header{
   background:linear-gradient(135deg,#1e293b,#3b82f6);
   color:white;
   padding:40px 20px;
   text-align:center;
 }
-
+/* Header khi dark mode */
+.dark header{
+  background:linear-gradient(135deg,#020617,#1e40af);
+}
 header h1{
   margin:0;
   font-size:2rem;
 }
-
 header p{
-  opacity:0.9;
+  opacity:0.8;
 }
-
+/* ================== LƯỚI 4 Ô ================== */
 .main-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); /* Tự chia cột */
   gap:25px;
   max-width:1100px;
   margin:auto;
@@ -50,9 +54,10 @@ header p{
   width:100%;
 }
 
+/* ================== CARD ================== */
 .card{
   background:var(--white);
-  height:220px;
+  height:250px;
   display:flex;
   flex-direction:column;
   justify-content:center;
@@ -68,17 +73,20 @@ header p{
   transition:all 0.3s ease;
 }
 
+/* Icon chính giữa card */
 .card i.main-icon{
   font-size:2.2rem;
   margin-bottom:10px;
   color:var(--accent);
 }
 
+/* Hiệu ứng hover */
 .card:hover{
-  transform:translateY(-10px) scale(1.03);
+  transform:translateY(-10px) scale(1.2);
   box-shadow:0 20px 40px rgba(59,130,246,0.25);
 }
 
+/* ================== LỚP PHỦ (HOVER) ================== */
 .overlay{
   position:absolute;
   inset:0;
@@ -87,13 +95,13 @@ header p{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  opacity:0;
+  opacity:0; /* Ẩn mặc định */
   transition:0.3s;
   color:white;
 }
 
 .card:hover .overlay{
-  opacity:1;
+  opacity:1; /* Hiện khi hover */
 }
 
 .overlay i{
@@ -106,6 +114,7 @@ header p{
   letter-spacing:1px;
 }
 
+/* ================== FOOTER ================== */
 footer{
   text-align:center;
   padding:20px;
@@ -113,13 +122,27 @@ footer{
   color:#666;
 }
 
-/* DARK MODE */
+/* ================== DARK MODE ================== */
 .dark{
-  --primary:#0f172a;
-  --bg:#020617;
-  --white:#111827;
+  --primary:#e2e8f0;   /* chữ sáng */
+  --bg:#020617;        /* nền tối */
+  --white:#111827;     /* nền card */
 }
 
+/* Sửa màu chữ khi dark mode */
+.dark body{
+  color:#e5e7eb;
+}
+
+.dark .card{
+  color:#e5e7eb;
+}
+
+.dark footer{
+  color:#9ca3af;
+}
+
+/* Nút bật dark mode */
 .toggle{
   position:fixed;
   top:15px;
@@ -137,6 +160,7 @@ footer{
 
 <body>
 
+<!-- Nút bật/tắt dark mode -->
 <button class="toggle" onclick="toggleDark()">🌙</button>
 
 <header>
@@ -144,8 +168,10 @@ footer{
   <p>Chọn khối lớp để bắt đầu</p>
 </header>
 
+<!-- ================== DANH SÁCH KHỐI ================== -->
 <div class="main-grid">
 
+<!-- CARD 1 -->
 <a href="lop10.html" class="card">
   <i class="fas fa-square-root-alt main-icon"></i>
   Toán 10
@@ -155,6 +181,7 @@ footer{
   </div>
 </a>
 
+<!-- CARD 2 -->
 <a href="lop11.html" class="card">
   <i class="fas fa-chart-line main-icon"></i>
   Toán 11
@@ -164,6 +191,7 @@ footer{
   </div>
 </a>
 
+<!-- CARD 3 -->
 <a href="lop12.html" class="card">
   <i class="fas fa-graduation-cap main-icon"></i>
   Toán 12
@@ -173,6 +201,7 @@ footer{
   </div>
 </a>
 
+<!-- CARD 4 -->
 <a href="daihoc.html" class="card">
   <i class="fas fa-university main-icon"></i>
   Đại học
@@ -189,6 +218,7 @@ footer{
 </footer>
 
 <script>
+/* ================== DARK MODE FUNCTION ================== */
 function toggleDark(){
   document.body.classList.toggle('dark');
 }
