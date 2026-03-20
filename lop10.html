@@ -3,37 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tài Liệu Lớp 10</title>
-    
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    
+    <title>Toán 10 - Tài Liệu Toán Học</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f7f6; }
-        nav { background: #a67c52; padding: 15px; text-align: center; }
-        nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
-        nav a:hover { color: #3498db; }
-        .container { max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(166, 124, 82, 1); }
-        .doc-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; border-bottom: 1px solid #eee; }
-        .btn-download { background: #3498db; color: white; padding: 5px 12px; border-radius: 4px; text-decoration: none; font-size: 14px; }
-        .formula-box { background: #eef2f3; padding: 15px; border-left: 5px solid #3498db; margin-top: 20px; }
+        :root {
+            --sidebar-width: 280px;
+            --primary: #1e40af;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --text: #1e293b;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: grid;
+            grid-template-areas: 
+                "header header"
+                "sidebar main";
+            grid-template-columns: var(--sidebar-width) 1fr;
+            grid-template-rows: 70px 1vh;
+            height: 100vh;
+            background: var(--bg);
+        }
+
+        /* ================== TOP NAV ================== */
+        .top-nav {
+            grid-area: header;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 500;
+        }
+        .nav-links a:hover { color: white; }
+
+        /* ================== SIDEBAR ================== */
+        .sidebar {
+            grid-area: sidebar;
+            background: var(--white);
+            border-right: 1px solid #e2e8f0;
+            overflow-y: auto;
+            padding: 20px 0;
+        }
+
+        .chapter {
+            padding: 10px 20px;
+            font-weight: bold;
+            background: #f1f5f9;
+            color: var(--primary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .lesson-link {
+            display: block;
+            padding: 12px 30px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #f8fafc;
+        }
+
+        .lesson-link:hover { background: #eff6ff; color: var(--primary); }
+
+        /* ================== MAIN CONTENT ================== */
+        .main-content {
+            grid-area: main;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-header {
+            background: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e2e8f0;
+            position: sticky;
+            top: 0;
+        }
+
+        .content-body {
+            padding: 40px;
+            flex-grow: 1;
+            max-width: 900px;
+            margin: auto;
+            line-height: 1.6;
+        }
+
+        /* ================== FOOTER ACTIONS ================== */
+        .content-footer {
+            padding: 20px;
+            text-align: center;
+            background: #f1f5f9;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .btn-download { background: #22c55e; color: white; }
+        .btn-nav { background: #e2e8f0; color: var(--text); margin: 0 5px; }
+        .btn:hover { opacity: 0.8; }
+
     </style>
 </head>
 <body>
-  <nav style="background: #a67c52; padding: 15px; text-align: center;">
-    <a href="index.html" style="color: white; margin: 0 15px; text-decoration: none; font-weight: bold;">Trang Chủ</a>
-    <a href="lop10.html" style="color: white; margin: 0 15px; text-decoration: none; font-weight: bold;">Lớp 10</a>
-    <a href="lop11.html" style="color: white; margin: 0 15px; text-decoration: none; font-weight: bold;">Lớp 11</a>
-    <a href="lop12.html" style="color: white; margin: 0 15px; text-decoration: none; font-weight: bold;">Lớp 12</a>
-</nav>
 
-<div class="container">
-    <h1>Tài liệu Lớp 12</h1>
-    <p>Nội dung về Giải tích và Hình học không gian...</p>
-</div>
+    <header class="top-nav">
+        <div class="logo">
+            <a href="index.html" style="color:white; text-decoration:none;"><i class="fas fa-arrow-left"></i> Trở về</a>
+        </div>
+        <div class="nav-links">
+            <a href="lop11.html">Lớp 11</a>
+            <a href="lop12.html">Lớp 12</a>
+            <a href="daihoc.html">Đại học</a>
+        </div>
+    </header>
+
+    <aside class="sidebar">
+        <div class="chapter">Chương 1: Mệnh đề & Tập hợp</div>
+        <a href="#" class="lesson-link">Bài 1: Mệnh đề toán học</a>
+        <a href="#" class="lesson-link">Bài 2: Tập hợp và các phép toán</a>
+        
+        <div class="chapter">Chương 2: Bất phương trình</div>
+        <a href="#" class="lesson-link active">Bài 1: Bất phương trình bậc nhất</a>
+        <a href="#" class="lesson-link">Bài 2: Hệ bất phương trình</a>
+    </aside>
+
+    <main class="main-content">
+        <div class="content-header">
+            <button class="btn btn-nav"><i class="fas fa-chevron-left"></i> Bài trước</button>
+            <h2 style="margin:0; font-size: 1.2rem;">Bài 1: Mệnh đề toán học</h2>
+            <button class="btn btn-nav">Bài tiếp theo <i class="fas fa-chevron-right"></i></button>
+        </div>
+
+        <div class="content-body">
+            <h3>I. Định nghĩa</h3>
+            <p>Nội dung bài học sẽ hiển thị ở đây. Bạn có thể chèn các công thức LaTeX, hình ảnh hoặc bảng biểu vào khu vực này.</p>
+            <div style="background: #fff; padding: 20px; border-left: 4px solid var(--primary); border-radius: 4px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+                Mệnh đề là một câu khẳng định có tính đúng hoặc sai rõ ràng.
+            </div>
+        </div>
+
+        <div class="content-footer">
+            <a href="tailieu.pdf" class="btn btn-download">
+                <i class="fas fa-download"></i> Tải tài liệu về (.pdf)
+            </a>
+        </div>
+    </main>
+
 </body>
-<footer>
-    <p style="text-align: center; color: #7f8c8d; font-size: 12px; margin-top: 50px;">
-        &copy; 2026 Trang tài liệu học tập lớp 10.
-    </p>
-</footer>
+</html>
