@@ -8,114 +8,124 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* [HƯỚNG DẪN]: Bảng màu chủ đạo */
         :root {
             --primary: #2c3e50;
             --accent: #3498db;
             --white: #ffffff;
-            --bg: #f0f2f5;
+            --bg: #f8f9fa;
         }
 
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--bg); display: flex; flex-direction: column; min-height: 100vh; }
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            margin: 0; 
+            background: var(--bg); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; /* Căn giữa theo chiều dọc */
+            min-height: 100vh; 
+        }
         
-        header { background: var(--primary); color: white; padding: 2rem; text-align: center; }
+        header { text-align: center; padding: 2rem 0; }
+        header h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 5px; }
 
-        /* [HƯỚNG DẪN]: Cấu trúc 4 khối nằm giữa màn hình */
+        /* [HƯỚNG DẪN]: Điều chỉnh độ rộng của toàn bộ nhóm khối */
         .main-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Tự động chia cột */
-            gap: 25px;
-            max-width: 1000px;
-            margin: auto; /* Căn giữa toàn bộ khối */
-            padding: 40px 20px;
-            width: 100%;
-            box-sizing: border-box;
+            grid-template-columns: repeat(2, 1fr); /* Chia 2 cột to */
+            gap: 30px;
+            max-width: 900px; /* Độ rộng tổng thể */
+            margin: 0 auto 50px auto;
+            padding: 20px;
         }
 
-        /* [HƯỚNG DẪN]: Thiết kế từng ô vuông (Card) */
+        /* [HƯỚNG DẪN]: Kích thước từng khối */
         .card {
             background: var(--white);
-            height: 200px;
+            height: 280px; /* Tăng chiều cao ô to hơn */
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-radius: 20px; /* Bo góc khối */
+            border-radius: 30px; /* Bo góc cực mạnh */
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             text-decoration: none;
             color: var(--primary);
-            font-weight: bold;
-            font-size: 1.5rem;
+            font-weight: 800;
+            font-size: 2rem; /* Chữ lớp học to hơn */
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        /* [HƯỚNG DẪN]: Hiệu ứng khi di chuột vào ô (Hover) */
+        /* Hiệu ứng khi di chuột vào */
         .card:hover {
-            transform: translateY(-10px); /* Nhảy lên một chút */
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
+            transform: scale(1.05); /* Phóng to nhẹ khi di chuột */
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
         }
 
-        /* [HƯỚNG DẪN]: Phần Icon "Xem tài liệu" ẩn bên dưới */
+        /* [HƯỚNG DẪN]: Lớp phủ MỜ (Overlay) */
         .overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(52, 152, 219, 0.9);
+            background: rgba(44, 62, 80, 0.8); /* Màu nền khi mờ (Xanh đen trong suốt) */
+            backdrop-filter: blur(8px); /* LỆNH QUAN TRỌNG: Làm mờ nội dung phía sau */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             opacity: 0; /* Mặc định ẩn */
-            transition: opacity 0.3s ease;
+            color: white;
+            transition: opacity 0.4s ease;
         }
 
         .card:hover .overlay {
             opacity: 1; /* Hiện lên khi di chuột */
         }
 
-        .overlay i { font-size: 2.5rem; margin-bottom: 10px; }
-        .overlay span { font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
+        .overlay i { font-size: 3.5rem; margin-bottom: 15px; color: var(--accent); }
+        .overlay span { font-size: 1.2rem; font-weight: 600; text-transform: uppercase; }
 
-        footer { text-align: center; padding: 20px; color: #888; font-size: 0.8rem; }
+        @media (max-width: 600px) {
+            .main-grid { grid-template-columns: 1fr; } /* Trên điện thoại thì xếp dọc */
+            .card { height: 200px; }
+        }
+
+        footer { text-align: center; padding: 20px; color: #bbb; }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Hệ Thống Tài Liệu Toán Học</h1>
-    <p>Chọn khối lớp để bắt đầu học tập</p>
+    <h1>📚 THƯ VIỆN TOÁN HỌC</h1>
+    <p style="color: #7f8c8d;">Chọn khối lớp để bắt đầu bài học</p>
 </header>
 
 <div class="main-grid">
     <a href="lop10.html" class="card">
-        Toán 10
+        TOÁN 10
         <div class="overlay">
-            <i class="fas fa-file-pdf"></i>
+            <i class="fas fa-plus-circle"></i>
             <span>Xem tài liệu</span>
         </div>
     </a>
 
     <a href="lop11.html" class="card">
-        Toán 11
+        TOÁN 11
         <div class="overlay">
-            <i class="fas fa-book"></i>
+            <i class="fas fa-square-root-alt"></i>
             <span>Xem tài liệu</span>
         </div>
     </a>
 
     <a href="lop12.html" class="card">
-        Toán 12
+        TOÁN 12
         <div class="overlay">
-            <i class="fas fa-graduation-cap"></i>
+            <i class="fas fa-integral"></i>
             <span>Xem tài liệu</span>
         </div>
     </a>
 
     <a href="daihoc.html" class="card">
-        Đại học
+        ĐẠI HỌC
         <div class="overlay">
             <i class="fas fa-university"></i>
             <span>Xem tài liệu</span>
@@ -124,7 +134,7 @@
 </div>
 
 <footer>
-    &copy; 2026 - Designed for Students
+    &copy; 2026 - Trang học liệu của Teaching Assistant
 </footer>
 
 </body>
