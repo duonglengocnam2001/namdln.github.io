@@ -1,141 +1,198 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thư Viện Toán Học</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thư Viện Toán Học</title>
 
-    <style>
-        :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --white: #ffffff;
-            --bg: #f8f9fa;
-        }
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        body { 
-            font-family: 'Segoe UI', sans-serif; 
-            margin: 0; 
-            background: var(--bg); 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; /* Căn giữa theo chiều dọc */
-            min-height: 100vh; 
-        }
-        
-        header { text-align: center; padding: 2rem 0; }
-        header h1 { color: var(--primary); font-size: 2.5rem; margin-bottom: 5px; }
+<style>
+:root{
+  --primary:#1e293b;
+  --accent:#3b82f6;
+  --white:#ffffff;
+  --bg:#eef2f7;
+}
 
-        /* [HƯỚNG DẪN]: Điều chỉnh độ rộng của toàn bộ nhóm khối */
-        .main-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* Chia 2 cột to */
-            gap: 30px;
-            max-width: 900px; /* Độ rộng tổng thể */
-            margin: 0 auto 50px auto;
-            padding: 20px;
-        }
+body{
+  margin:0;
+  font-family:system-ui;
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
 
-        /* [HƯỚNG DẪN]: Kích thước từng khối */
-        .card {
-            background: var(--white);
-            height: 280px; /* Tăng chiều cao ô to hơn */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border-radius: 30px; /* Bo góc cực mạnh */
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            text-decoration: none;
-            color: var(--primary);
-            font-weight: 800;
-            font-size: 2rem; /* Chữ lớp học to hơn */
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+header{
+  background:linear-gradient(135deg,#1e293b,#3b82f6);
+  color:white;
+  padding:40px 20px;
+  text-align:center;
+}
 
-        /* Hiệu ứng khi di chuột vào */
-        .card:hover {
-            transform: scale(1.05); /* Phóng to nhẹ khi di chuột */
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
+header h1{
+  margin:0;
+  font-size:2rem;
+}
 
-        /* [HƯỚNG DẪN]: Lớp phủ MỜ (Overlay) */
-        .overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(44, 62, 80, 0.8); /* Màu nền khi mờ (Xanh đen trong suốt) */
-            backdrop-filter: blur(8px); /* LỆNH QUAN TRỌNG: Làm mờ nội dung phía sau */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0; /* Mặc định ẩn */
-            color: white;
-            transition: opacity 0.4s ease;
-        }
+header p{
+  opacity:0.9;
+}
 
-        .card:hover .overlay {
-            opacity: 1; /* Hiện lên khi di chuột */
-        }
+.main-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+  width:100%;
+}
 
-        .overlay i { font-size: 3.5rem; margin-bottom: 15px; color: var(--accent); }
-        .overlay span { font-size: 1.2rem; font-weight: 600; text-transform: uppercase; }
+.card{
+  background:var(--white);
+  height:220px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  border-radius:20px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  text-decoration:none;
+  color:var(--primary);
+  font-weight:bold;
+  font-size:1.4rem;
+  transition:all 0.3s ease;
+}
 
-        @media (max-width: 600px) {
-            .main-grid { grid-template-columns: 1fr; } /* Trên điện thoại thì xếp dọc */
-            .card { height: 200px; }
-        }
+.card i.main-icon{
+  font-size:2.2rem;
+  margin-bottom:10px;
+  color:var(--accent);
+}
 
-        footer { text-align: center; padding: 20px; color: #bbb; }
-    </style>
+.card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 20px 40px rgba(59,130,246,0.25);
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(59,130,246,0.95);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  transition:0.3s;
+  color:white;
+}
+
+.card:hover .overlay{
+  opacity:1;
+}
+
+.overlay i{
+  font-size:2.5rem;
+  margin-bottom:10px;
+}
+
+.overlay span{
+  font-size:0.9rem;
+  letter-spacing:1px;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  font-size:0.8rem;
+  color:#666;
+}
+
+/* DARK MODE */
+.dark{
+  --primary:#0f172a;
+  --bg:#020617;
+  --white:#111827;
+}
+
+.toggle{
+  position:fixed;
+  top:15px;
+  right:15px;
+  background:white;
+  border:none;
+  padding:8px 12px;
+  border-radius:8px;
+  cursor:pointer;
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+}
+
+</style>
 </head>
+
 <body>
 
+<button class="toggle" onclick="toggleDark()">🌙</button>
+
 <header>
-    <h1>📚 THƯ VIỆN TOÁN HỌC</h1>
-    <p style="color: #7f8c8d;">Chọn khối lớp để bắt đầu bài học</p>
+  <h1>Hệ Thống Tài Liệu Toán Học</h1>
+  <p>Chọn khối lớp để bắt đầu</p>
 </header>
 
 <div class="main-grid">
-    <a href="lop10.html" class="card">
-        TOÁN 10
-        <div class="overlay">
-            <i class="fas fa-plus-circle"></i>
-            <span>Xem tài liệu</span>
-        </div>
-    </a>
 
-    <a href="lop11.html" class="card">
-        TOÁN 11
-        <div class="overlay">
-            <i class="fas fa-square-root-alt"></i>
-            <span>Xem tài liệu</span>
-        </div>
-    </a>
+<a href="lop10.html" class="card">
+  <i class="fas fa-square-root-alt main-icon"></i>
+  Toán 10
+  <div class="overlay">
+    <i class="fas fa-file-pdf"></i>
+    <span>Xem tài liệu</span>
+  </div>
+</a>
 
-    <a href="lop12.html" class="card">
-        TOÁN 12
-        <div class="overlay">
-            <i class="fas fa-integral"></i>
-            <span>Xem tài liệu</span>
-        </div>
-    </a>
+<a href="lop11.html" class="card">
+  <i class="fas fa-chart-line main-icon"></i>
+  Toán 11
+  <div class="overlay">
+    <i class="fas fa-book"></i>
+    <span>Xem tài liệu</span>
+  </div>
+</a>
 
-    <a href="daihoc.html" class="card">
-        ĐẠI HỌC
-        <div class="overlay">
-            <i class="fas fa-university"></i>
-            <span>Xem tài liệu</span>
-        </div>
-    </a>
+<a href="lop12.html" class="card">
+  <i class="fas fa-graduation-cap main-icon"></i>
+  Toán 12
+  <div class="overlay">
+    <i class="fas fa-file"></i>
+    <span>Xem tài liệu</span>
+  </div>
+</a>
+
+<a href="daihoc.html" class="card">
+  <i class="fas fa-university main-icon"></i>
+  Đại học
+  <div class="overlay">
+    <i class="fas fa-folder-open"></i>
+    <span>Xem tài liệu</span>
+  </div>
+</a>
+
 </div>
 
 <footer>
-    &copy; 2026 - Trang học liệu của Teaching Assistant
+© 2026 - Math Library
 </footer>
+
+<script>
+function toggleDark(){
+  document.body.classList.toggle('dark');
+}
+</script>
 
 </body>
 </html>
