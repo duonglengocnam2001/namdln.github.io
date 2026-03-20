@@ -6,95 +6,92 @@
 
 <style>
 body {
+    margin: 0;
     font-family: "Times New Roman", serif;
-    max-width: 900px;
-    margin: auto;
-    line-height: 1.6;
 }
 
-h1, h2 {
-    border-bottom: 1px solid #ccc;
+/* Layout */
+.container {
+    display: flex;
+    height: 100vh;
 }
 
-nav a {
-    margin-right: 15px;
-    color: blue;
-    cursor: pointer;
+/* Sidebar */
+.sidebar {
+    width: 300px;
+    border-right: 1px solid #ccc;
+    padding: 15px;
+    overflow-y: auto;
 }
 
-.section {
-    display: none;
+.sidebar h2 {
+    margin-top: 0;
 }
 
-.active {
-    display: block;
-}
-
-input {
+.sidebar input {
     width: 100%;
-    padding: 8px;
+    padding: 6px;
+    margin-bottom: 10px;
+}
+
+/* Viewer */
+.viewer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Toolbar */
+.toolbar {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    background: #f5f5f5;
+}
+
+iframe {
+    flex: 1;
+    width: 100%;
+    border: none;
 }
 </style>
 </head>
 
 <body>
 
-<h1>Dương Lê Ngọc Nam</h1>
+<div class="container">
 
-<p>
-Giảng viên Toán học <br>
-Hướng nghiên cứu: Đại số giao hoán, module, vành Noether
-</p>
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <h2>📚 Tài liệu</h2>
 
-<nav>
-    <a onclick="show('home')">Trang chủ</a>
-    <a onclick="show('teaching')">Giảng dạy</a>
-    <a onclick="show('research')">Nghiên cứu</a>
-    <a onclick="show('notes')">Ghi chú</a>
-</nav>
+        <input type="text" placeholder="Tìm..." onkeyup="searchDocs()" id="search">
 
-<hr>
+        <ul id="docs">
+            <li><a href="#" onclick="openPDF('files/daiso.pdf')">📄 Đại số đại cương</a></li>
+            <li><a href="#" onclick="openPDF('files/xacsuat.pdf')">📄 Xác suất</a></li>
+            <li><a href="#" onclick="openPDF('files/nhom.pdf')">📄 Nhóm và nửa nhóm</a></li>
+        </ul>
+    </div>
 
-<div id="home" class="section active">
-    <h2>Giới thiệu</h2>
-    <p>Trang cá nhân chia sẻ tài liệu và nghiên cứu.</p>
+    <!-- VIEWER -->
+    <div class="viewer">
+
+        <div class="toolbar">
+            <span id="title">Chọn tài liệu để xem</span>
+        </div>
+
+        <iframe id="pdfViewer"></iframe>
+
+    </div>
+
 </div>
-
-<div id="teaching" class="section">
-    <h2>Tài liệu giảng dạy</h2>
-
-    <input type="text" id="search" placeholder="Tìm tài liệu..." onkeyup="searchDocs()">
-
-    <ul id="docs">
-        <li>Đại số đại cương - <a href="files/daiso.pdf">Tải</a></li>
-        <li>Xác suất - <a href="files/xacsuat.pdf">Tải</a></li>
-    </ul>
-</div>
-
-<div id="research" class="section">
-    <h2>Nghiên cứu</h2>
-    <ul>
-        <li>Độ dài mô-đun</li>
-        <li>Flat extension</li>
-    </ul>
-</div>
-
-<div id="notes" class="section">
-    <h2>Ghi chú</h2>
-    <ul>
-        <li>Vành địa phương</li>
-    </ul>
-</div>
-
-<hr>
-
-<p>© 2026</p>
 
 <script>
-function show(id) {
-    let sections = document.getElementsByClassName("section");
-    for (let s of sections) s.classList.remove("active");
-    document.getElementById(id).classList.add("active");
+function openPDF(file) {
+    document.getElementById("pdfViewer").src = file;
+
+    // cập nhật tiêu đề
+    document.getElementById("title").innerText = file.split('/').pop();
 }
 
 function searchDocs() {
