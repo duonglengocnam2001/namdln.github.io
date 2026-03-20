@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thư Viện Toán Học</title>
+<title><i class="fas fa-function-alt main-icon"></i>Tài liệu Toán Học</title>
 
 <!-- ICON (Font Awesome) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -47,14 +47,14 @@ header p{
 .main-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); /* Tự chia cột */
-  gap:25px;
-  max-width:1100px;
+  gap:40px;
+  max-width:1500px;
   margin:auto;
   padding:40px 20px;
   width:100%;
 }
 
-/* ================== CARD ================== */
+/* ================== Ô ================== */
 .card{
   background:var(--white);
   height:250px;
@@ -95,7 +95,7 @@ header p{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  opacity:0; /* Ẩn mặc định */
+  opacity:0.5; /* Ẩn mặc định */
   transition:0.3s;
   color:white;
 }
@@ -164,8 +164,8 @@ footer{
 <button class="toggle" onclick="toggleDark()">🌙</button>
 
 <header>
-  <h1>Hệ Thống Tài Liệu Toán Học</h1>
-  <p>Chọn khối lớp để bắt đầu</p>
+  <h1>Tài Liệu Toán Học</h1>
+  <p></p>
 </header>
 
 <!-- ================== DANH SÁCH KHỐI ================== -->
@@ -173,7 +173,7 @@ footer{
 
 <!-- CARD 1 -->
 <a href="lop10.html" class="card">
-  <i class="fas fa-square-root-alt main-icon"></i>
+  <i class="fas fa-function-alt main-icon"></i>
   Toán 10
   <div class="overlay">
     <i class="fas fa-file-pdf"></i>
