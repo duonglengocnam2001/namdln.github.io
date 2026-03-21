@@ -1,319 +1,55 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toán 10 - Thư viện Tài liệu</title>
-
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Toán 10 - Thư viện Tài liệu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<style>
-    /* ================== HỆ THỐNG MÀU ĐỒNG BỘ ================== */
-    :root {
-        --primary: #1e293b;
-        --teal: #11a6a1;
-        --white: #ffffff;
-        --bg: #eef2f7;
-        --header-title: #020617;
-        --card-shadow: rgba(0,0,0,0.08);
-    }
-
-    .dark {
-        --primary: #e2e8f0;
-        --bg: #020617;
-        --white: #111827;
-        --header-title: #eef2f7;
-        --card-shadow: rgba(0,0,0,0.3);
-    }
-
-    /* ================== CẤU TRÚC CHUNG ================== */
-    body {
-        margin: 0;
-        font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
-        background: var(--bg);
-        color: var(--primary);
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        transition: background 0.3s ease;
-    }
-
-    /* ================== HEADER ĐỒNG BỘ ================== */
-    header {
-        background: #eef2f7;
-        padding: 60px 20px;
-        text-align: center;
-        transition: 0.3s ease;
-        position: relative;
-    }
-
-    .dark header {
-        background: linear-gradient(0deg, #020617, #040F2B);
-    }
-
-    header h1 {
-        margin: 0;
-        font-size: 3.5rem;
-        color: var(--header-title);
-    }
-
-    .back-btn {
-      font-size: 20px;
-        position: fixed;
-        top: 30px;
-        left: 30px;
-        text-decoration: none;
-        color: var(--primary);
-        font-weight: bold;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        transition: 0.3s;
-    }
-
-    .back-btn:hover { transform: translateX(-5px); }
-
-    /* ================== NÚT DARK MODE ================== */
-      /* Nút bật dark mode */
-      /* Giữ vị trí cố định góc trên bên phải */
-      .toggle {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        width: 50px;
-        height: 25.5px;
-        display: inline-block;
-        z-index: 1000; /* Đảm bảo nút luôn nằm trên cùng */
-      }
-      
-      /* Ẩn checkbox gốc */
-      .toggle input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-      
-      /* Phần nền của thanh trượt */
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background-color: #ccc;
-        transition: .4s;
-        border-radius: 34px;
-      }
-      
-      /* Nút tròn màu trắng di chuyển bên trong */
-      .slider:before {
-        position: absolute;
-        content: "🌙";text-indent: 23.5px;
-        height: 20px;
-        width: 20px;
-        left: 3px;
-        bottom: 3px;
-        background-color: white;
-        transition: .4s;
-        border-radius: 50%;
-      }
-      
-      /* Khi được bật (Dark Mode) - Đổi sang màu Teal */
-      input:checked + .slider {
-        background-color: #11a6a1;
-      }
-      /* Hiệu ứng trượt nút trắng sang phải */
-      input:checked + .slider:before {
-        content: "☀️";text-indent: -24.5px;
-        transform: translateX(25px);
-      }
-
-    /* ================== NỘI DUNG CHÍNH ================== */
-    .container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 40px 20px;
-        flex: 1;
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-        color: var(--teal);
-        margin-bottom: 25px;
-        display: flex;
-        align-items: center;
-        gap: 15px;
-    }
-
-    .section-title::after {
-        content: "";
-        flex: 1;
-        height: 1px;
-        background: #cbd5e1;
-    }
-
-    /* CARD TÀI LIỆU */
-    .doc-card {
-        background: var(--white);
-        padding: 25px;
-        border-radius: 15px;
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 4px 15px var(--card-shadow);
-        transition: 0.3s;
-    }
-
-    .doc-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 25px var(--card-shadow);
-    }
-
-    .doc-info h3 {
-        margin: 0 0 8px 0;
-        font-size: 1.3rem;
-    }
-
-    .doc-preview {
-        color: #64748b;
-        font-size: 0.95rem;
-    }
-
-    .dark .doc-preview { color: #94a3b8; }
-
-    /* NÚT BẤM */
-    .doc-actions {
-        display: flex;
-        gap: 12px;
-    }
-
-    .btn {
-        padding: 10px 20px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 0.9rem;
-        transition: 0.3s;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-    .btn-view {
-        background: #f1f5f9;
-        color: #475569;
-    }
-    .btn-view:hover { opacity: 0.9; transform: scale(1.05); }
-    .dark .btn-view {
-        background: #1e293b;
-        color: #e2e8f0;
-    }
-
-    .btn-download {
-        background: var(--teal);
-        color: white;
-    }
-
-    .btn-download:hover { opacity: 0.9; transform: scale(1.05); }
-
-    /* ================== FOOTER ================== */
-    footer {
-        text-align: center;
-        padding: 40px;
-        color: #666;
-        font-size: 0.85rem;
-        border-top: 1px solid #cbd5e1;
-    }
-
-    .dark footer { border-top-color: #1e293b; color: #94a3b8; }
-
-</style>
+    <style>
+        :root { --primary: #1e293b; --teal: #11a6a1; --white: #ffffff; --bg: #eef2f7; --header-title: #020617; --card-shadow: rgba(0,0,0,0.08); }
+        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: var(--bg); color: var(--primary); display: flex; flex-direction: column; min-height: 100vh; }
+        header { background: #eef2f7; padding: 60px 20px; text-align: center; position: relative; }
+        header h1 { margin: 0; font-size: 3.5rem; color: var(--header-title); }
+        .back-btn { font-size: 20px; position: fixed; top: 30px; left: 30px; text-decoration: none; color: var(--primary); font-weight: bold; display: flex; align-items: center; gap: 8px; transition: 0.3s; z-index: 10; }
+        .back-btn:hover { transform: translateX(-5px); }
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; flex: 1; width: 100%; box-sizing: border-box; }
+        .section-title { font-size: 1.8rem; color: var(--teal); margin-bottom: 25px; display: flex; align-items: center; gap: 15px; }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: #cbd5e1; }
+        .doc-card { background: var(--white); padding: 25px; border-radius: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 15px var(--card-shadow); transition: 0.3s; }
+        .doc-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px var(--card-shadow); }
+        .doc-info h3 { margin: 0 0 8px 0; font-size: 1.3rem; }
+        .doc-preview { color: #64748b; font-size: 0.95rem; }
+        .doc-actions { display: flex; gap: 12px; }
+        .btn { padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; transition: 0.3s; display: flex; align-items: center; gap: 8px; }
+        .btn-view { background: #f1f5f9; color: #475569; }
+        .btn-view:hover { transform: scale(1.05); background: #e2e8f0; }
+        .btn-download { background: var(--teal); color: white; }
+        .btn-download:hover { transform: scale(1.05); opacity: 0.9; }
+        footer { text-align: center; padding: 40px; color: #666; font-size: 0.85rem; border-top: 1px solid #cbd5e1; }
+    </style>
 </head>
 <body>
-  <script>
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark');
-      } else {
-        document.body.classList.remove('dark');
-      }
-    })();
-  </script>
-
-<label class="toggle">
-    <input type="checkbox" id="theme-switch" onclick="toggleDark()">
-    <span class="slider"></span>
-</label>
-
-<header>
-    <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Quay lại</a>
-    <h1>Toán Học Lớp 10</h1>
-</header>
-
-<div class="container">
-    
-    <div class="section">
-        <h2 class="section-title"><i class="fas fa-book"></i> Bài học & Lý thuyết</h2>
-        <div class="doc-card">
-            <div class="doc-info">
-                <h3>Mệnh đề và Tập hợp</h3>
-                <div class="doc-preview">Ví dụ LaTeX: $ A \cup B = \{x \mid x \in A \text{ hoặc } x \in B\} $</div>
+    <header><a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Quay lại</a><h1>Toán Học Lớp 10</h1></header>
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title"><i class="fas fa-book"></i> Bài học & Lý thuyết</h2>
+            <div class="doc-card">
+                <div class="doc-info"><h3>Mệnh đề và Tập hợp</h3><div class="doc-preview">Ví dụ LaTeX: $ A \cup B = \{x \mid x \in A \text{ hoặc } x \in B\} $</div></div>
+                <div class="doc-actions"><a href="#" class="btn btn-view">Xem bài giảng</a><a href="tailieu/chuong1.pdf" class="btn btn-download"><i class="fas fa-file-pdf"></i> Tải PDF</a></div>
             </div>
-            <div class="doc-actions">
-                <a href="#" class="btn btn-view">Xem bài giảng</a>
-                <a href="tailieu/chuong1.pdf" class="btn btn-download"><i class="fas fa-file-pdf"></i> Tải PDF</a>
+            <div class="doc-card">
+                <div class="doc-info"><h3>Vectơ và các phép toán</h3><div class="doc-preview">Công thức: $ \vec{u} \cdot \vec{v} = |\vec{u}| \cdot |\vec{v}| \cdot \cos(\vec{u}, \vec{v}) $</div></div>
+                <div class="doc-actions"><a href="#" class="btn btn-view">Xem bài giảng</a><a href="#" class="btn btn-download"><i class="fas fa-file-pdf"></i> Tải PDF</a></div>
             </div>
         </div>
-
-        <div class="doc-card">
-            <div class="doc-info">
-                <h3>Vectơ và các phép toán</h3>
-                <div class="doc-preview">Công thức: $ \vec{u} \cdot \vec{v} = |\vec{u}| \cdot |\vec{v}| \cdot \cos(\vec{u}, \vec{v}) $</div>
-            </div>
-            <div class="doc-actions">
-                <a href="#" class="btn btn-view">Xem bài giảng</a>
-                <a href="#" class="btn btn-download"><i class="fas fa-file-pdf"></i> Tải PDF</a>
+        <div class="section" style="margin-top: 50px;">
+            <h2 class="section-title"><i class="fas fa-edit"></i> Bài tập rèn luyện</h2>
+            <div class="doc-card">
+                <div class="doc-info"><h3>Phiếu bài tập: Hệ bất phương trình</h3><div class="doc-preview">Số lượng: 20 câu trắc nghiệm, 5 tự luận</div></div>
+                <div class="doc-actions"><a href="#" class="btn btn-download"><i class="fas fa-download"></i> Tải đề bài</a></div>
             </div>
         </div>
     </div>
-
-    <div class="section" style="margin-top: 50px;">
-        <h2 class="section-title"><i class="fas fa-edit"></i> Bài tập rèn luyện</h2>
-        
-        <div class="doc-card">
-            <div class="doc-info">
-                <h3>Phiếu bài tập: Hệ bất phương trình</h3>
-                <div class="doc-preview">Số lượng: 20 câu trắc nghiệm, 5 tự luận</div>
-            </div>
-            <div class="doc-actions">
-                <a href="#" class="btn btn-download"><i class="fas fa-download"></i> Tải đề bài</a>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-<footer>
-    © 2026 - Thư viện Toán học | Design for Education
-</footer>
-
-<script>
-  function toggleMode() {
-    // 1. Thực hiện đổi màu
-    const isDark = document.body.classList.toggle('dark');
-    
-    // 2. Ghi nhớ vào bộ nhớ trình duyệt
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    
-    // 3. (Nếu có dùng nhãn chữ) Cập nhật trạng thái chữ
-    const label = document.querySelector('.lamp-label');
-    if (label) {
-      label.innerText = isDark ? 'Dark' : 'Light';
-    }
-  }
-</script>
+    <footer>© 2026 - Thư viện Toán học | Design for Education</footer>
 </body>
 </html>
