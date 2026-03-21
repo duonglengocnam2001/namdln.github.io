@@ -1,239 +1,186 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bài giảng: Mệnh đề và Tập hợp</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>
-      window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };
-    </script>
-    
-    <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; margin: 0; padding: 0; }
-        
-        /* Header */
-        .nav-header { background: white; padding: 15px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; display: flex; align-items: center; gap: 20px; z-index: 1000; }
-        .back-link { text-decoration: none; color: #11a6a1; font-weight: bold; transition: 0.3s; }
-        .back-link:hover { color: #0d8a86; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài giảng: Mệnh đề và Tập hợp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };
+    </script>
+    
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; margin: 0; padding: 0; }
+        
+        /* Header */
+        .nav-header { background: white; padding: 15px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; display: flex; align-items: center; gap: 20px; z-index: 1000; }
+        .back-link { text-decoration: none; color: #11a6a1; font-weight: bold; transition: 0.3s; }
+        .back-link:hover { color: #0d8a86; }
 
-        /* Container chính */
-        .main-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            max-width: 1300px;
-            margin: 30px auto;
-            padding: 0 20px;
-            align-items: flex-start;
-        }
+        /* Container chính */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px; /* Tăng khoảng cách cho thoáng */
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+            align-items: flex-start;
+        }
 
-        /* Sidebar */
-        .sidebar {
-            width: 300px;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 90px;
-        }
-        .sidebar h3 { font-size: 0.8rem; color: #94a3b8; letter-spacing: 1px; margin-top: 0; text-transform: uppercase; }
-        .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar a { text-decoration: none; color: #475569; display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 8px; transition: 0.3s; }
-        .sidebar a:hover, .sidebar a.active { background: #f0fdfa; color: #11a6a1; font-weight: 600; }
-        .sidebar hr { border: 0; border-top: 1px solid #f1f5f9; margin: 15px 0; }
+        /* Sidebar - Giữ nguyên phong cách ban đầu */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 100px;
+        }
+        .sidebar h3 { font-size: 0.8rem; color: #94a3b8; letter-spacing: 1px; margin-bottom: 20px; text-transform: uppercase; }
+        .sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar a { text-decoration: none; color: #475569; display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 10px; transition: 0.3s; }
+        .sidebar a:hover, .sidebar a.active { background: #f0fdfa; color: #11a6a1; font-weight: 600; }
 
-        /* Vùng nội dung */
-        .content-area {
-            flex: 1;
-            max-width: 900px;
-            background: white;
-            padding: 40px 50px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            text-align: justify;
-        }
+        /* Content Area - Phục hồi độ rộng và padding */
+        .content-area {
+            flex: 1;
+            max-width: 900px;
+            background: white;
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            text-align: justify;
+        }
 
-        /* Khối định dạng đặc biệt */
-        h1 { color: #020617; border-left: 5px solid #11a6a1; padding-left: 15px; margin-top: 0; font-size: 2rem; }
-        h2 { color: #334155; margin-top: 30px; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; }
-        
-        .dn { background: #f0fdfa; border-left: 4px solid #11a6a1; padding: 20px; margin: 25px 0; border-radius: 0 10px 10px 0; position: relative; }
-        .dn::before { content: "Định nghĩa"; font-weight: bold; color: #11a6a1; display: block; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem; }
-        
-        .vidu { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; margin: 25px 0; border-radius: 10px; }
-        .vidu::before { content: "Ví dụ"; font-weight: bold; color: #64748b; display: block; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem; }
-        
-        .chuy { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px; margin: 25px 0; border-radius: 0 10px 10px 0; }
-        .chuy::before { content: "Chú ý"; font-weight: bold; color: #d97706; display: block; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85rem; }
-        
-        table { width: 100%; border-collapse: collapse; margin: 25px 0; background: white; border-radius: 8px; overflow: hidden; }
-        th, td { border: 1px solid #e2e8f0; padding: 14px; text-align: center; }
-        th { background: #f1f5f9; color: #475569; font-weight: 600; }
-        tr:hover { background-color: #f8fafc; }
+        /* Nút điều hướng phía trên */
+        .top-pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            background: #f8fafc;
+            color: #11a6a1;
+            font-weight: 500;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .nav-btn:hover { background: #f0fdfa; border-color: #11a6a1; }
+        .nav-btn .text-label { display: flex; flex-direction: column; line-height: 1.2; }
+        .nav-btn .sub { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; }
 
-        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 0.9rem; }
+        /* Typography & Boxes */
+        h1 { color: #020617; border-left: 6px solid #11a6a1; padding-left: 20px; margin-bottom: 30px; font-size: 2.2rem; }
+        h2 { color: #334155; margin-top: 40px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
+        
+        .dn { background: #f0fdfa; border-left: 4px solid #11a6a1; padding: 25px; margin: 30px 0; border-radius: 0 12px 12px 0; }
+        .dn::before { content: "Định nghĩa"; font-weight: bold; color: #11a6a1; display: block; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; }
+        
+        .vidu { background: #f8fafc; border: 1px solid #e2e8f0; padding: 25px; margin: 30px 0; border-radius: 12px; }
+        .vidu::before { content: "Ví dụ"; font-weight: bold; color: #64748b; display: block; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 30px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px #e2e8f0; }
+        th, td { padding: 16px; border: 1px solid #e2e8f0; text-align: center; }
+        th { background: #f8fafc; color: #475569; }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .main-container { flex-direction: column; align-items: center; }
-            .sidebar { width: 100%; position: static; box-sizing: border-box; }
-            .content-area { width: 100%; padding: 30px; box-sizing: border-box; }
-        }
-        /* Điều hướng chuyển bài phía trên nội dung */
-        .top-pagination {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #f1f5f9;
-        }
-        
-        .nav-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            text-decoration: none;
-            color: #11a6a1;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 8px 12px;
-            border-radius: 8px;
-            background: #f8fafc;
-        }
-        
-        .nav-item:hover {
-            background: #f0fdfa; color: #11a6a1;
-        }
-        
-        .nav-item i {
-            font-size: 0.8rem;
-        }
-        
-        .nav-label {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .nav-text {
-            font-size: 0.75rem;
-            color: #94a3b8;
-            text-transform: uppercase;
-        }
-    </style>
+        footer { text-align: center; padding: 50px; color: #94a3b8; }
+
+        @media (max-width: 1100px) {
+            .main-container { flex-direction: column; }
+            .sidebar { width: 100%; position: static; }
+            .content-area { padding: 35px; }
+        }
+    </style>
 </head>
 
 <body>
-    <header class="nav-header">
-        <a href="../../lop10.html" class="back-link"><i class="fas fa-arrow-left"></i> Quay lại</a>
-        <span style="color: #cbd5e1;">|</span>
-        <strong>Chương 1: Mệnh đề và tập hợp</strong>
-    </header>
+    <header class="nav-header">
+        <a href="../../lop10.html" class="back-link"><i class="fas fa-arrow-left"></i> Quay lại</a>
+        <span style="color: #cbd5e1;">|</span>
+        <strong>Chương 1: Mệnh đề và tập hợp</strong>
+    </header>
 
-    <div class="main-container">
-        <aside class="sidebar">
-            <h3>Danh mục bài học</h3>
-            <ul>
-                <li><a href="#" class="active"><i class="fas fa-book"></i> 1.1. Mệnh đề</a></li>
-                <li><a href="Chude2.html"><i class="fas fa-layer-group"></i> 1.2. Tập hợp & Phép toán</a></li>
-                <li><hr></li>
-                <li><a href="on-tap.html"><i class="fas fa-edit"></i> Ôn tập chương 1</a></li>
-            </ul>
-        </aside>
+    <div class="main-container">
+        <aside class="sidebar">
+            <h3>Danh mục bài học</h3>
+            <ul>
+                <li><a href="#" class="active"><i class="fas fa-book"></i> 1.1. Mệnh đề</a></li>
+                <li><a href="Chude2.html"><i class="fas fa-layer-group"></i> 1.2. Tập hợp & Phép toán</a></li>
+                <li><hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 15px 0;"></li>
+                <li><a href="on-tap.html"><i class="fas fa-edit"></i> Ôn tập chương 1</a></li>
+            </ul>
+        </aside>
 
-        <article class="content-area">
-          <div class="top-pagination">
-              <a href="../../lop10.html" class="nav-item" style="visibility: hidden;">
-                  <i class="fas fa-chevron-left"></i>
-                  <div class="nav-label">
-                      <span class="nav-text">Bài trước</span>
-                  </div>
-              </a>
-          
-              <a href="Chude2.html" class="nav-item" style="text-align: right;">
-                  <div class="nav-label">
-                      <span class="nav-text">Bài tiếp theo</span>
-                  </div>
-                  <i class="fas fa-chevron-right"></i>
-              </a>
-          </div>
-        <h1>Mệnh đề và Tập hợp</h1>
-            <section>
-                <h2>1. Mệnh đề - Mệnh đề chứa biến</h2>
-                <p>Trong toán học, mọi lập luận và chứng minh đều bắt đầu từ những phát biểu có ý nghĩa xác định. Để diễn đạt các ý tưởng một cách rõ ràng và logic, người ta sử dụng mệnh đề – những câu khẳng định có thể được xem là đúng hoặc sai.</p>
+        <article class="content-area">
+            <div class="top-pagination">
+                <a href="../../lop10.html" class="nav-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <div class="text-label">
+                        <span class="sub">Bài trước</span>
+                        <span>Quay lại danh mục</span>
+                    </div>
+                </a>
+            
+                <a href="Chude2.html" class="nav-btn">
+                    <div class="text-label" style="text-align: right;">
+                        <span class="sub">Bài tiếp theo</span>
+                        <span>1.2. Tập hợp</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
 
-                <div class="dn">
-                    <i>Mệnh đề</i> là một câu khẳng định đúng hoặc một câu khẳng định sai. Một mệnh đề không thể vừa đúng vừa sai.
-                </div>
+            <h1>1.1. Mệnh đề</h1>
+            
+            <section>
+                <h2>1. Mệnh đề - Mệnh đề chứa biến</h2>
+                <p>Trong toán học, mọi lập luận và chứng minh đều bắt đầu từ những phát biểu có ý nghĩa xác định. Người ta sử dụng mệnh đề như những "viên gạch" nền tảng để xây dựng nên hệ thống tư duy logic.</p>
 
-                <div class="vidu">
-                    <ol>
-                        <li>Câu $A$: "<i>$2$ là số nguyên tố</i>" là một mệnh đề đúng.</li>
-                        <li>Câu $B$: "<i>$x^2-2x+1=0$ vô nghiệm</i>" là một mệnh đề sai vì có nghiệm $x=1$.</li>
-                        <li>Câu $C$: "<i>Hôm nay trời đẹp quá!</i>" không phải là mệnh đề.</li>
-                    </ol>
-                </div>
+                <div class="dn">
+                    <i>Mệnh đề</i> là một câu khẳng định đúng hoặc một câu khẳng định sai. Một mệnh đề không thể vừa đúng vừa sai.
+                </div>
 
-                <div class="dn">
-                    <i>Mệnh đề chứa biến</i> là câu khẳng định chứa biến $x, y, n, \dots$ mà tính đúng sai của nó phụ thuộc vào giá trị của biến.
-                </div>
-            </section>
+                <div class="vidu">
+                    <ol>
+                        <li>Câu $A$: "<i>$2$ là số nguyên tố</i>" là một mệnh đề đúng.</li>
+                        <li>Câu $B$: "<i>$x^2-2x+1=0$ vô nghiệm</i>" là một mệnh đề sai.</li>
+                    </ol>
+                </div>
+            </section>
 
-            <section>
-                <h2>2. Phủ định của một mệnh đề</h2>
-                <p>Ký hiệu mệnh đề phủ định của $P$ là $\overline{P}$. Hai mệnh đề này luôn có tính chân trị trái ngược nhau.</p>
-                <div class="dn">
-                    Mệnh đề $\overline{P}$ đúng khi $P$ sai, và $\overline{P}$ sai khi $P$ đúng.
-                </div>
-            </section>
+            <section>
+                <h2>2. Bảng chân trị mệnh đề kéo theo</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>$P$</th>
+                            <th>$Q$</th>
+                            <th>$P \Rightarrow Q$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Đúng</td><td>Đúng</td><td>Đúng</td></tr>
+                        <tr><td>Sai</td><td>Đúng</td><td>Đúng</td></tr>
+                        <tr><td>Đúng</td><td>Sai</td><td><b style="color: #e11d48;">Sai</b></td></tr>
+                    </tbody>
+                </table>
+            </section>
+        </article>
+    </div>
 
-            <section>
-                <h2>3. Mệnh đề kéo theo - đảo - tương đương</h2>
-                <div class="dn">
-                    Mệnh đề kéo theo có dạng "Nếu $P$ thì $Q$", ký hiệu $P \Rightarrow Q$.
-                </div>
-
-                <p>Bảng giá trị chân trị:</p>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>$P$</th>
-                            <th>$Q$</th>
-                            <th>$P \Rightarrow Q$</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Đúng</td><td>Đúng</td><td>Đúng</td></tr>
-                        <tr><td>Sai</td><td>Sai</td><td>Đúng</td></tr>
-                        <tr><td>Sai</td><td>Đúng</td><td>Đúng</td></tr>
-                        <tr><td>Đúng</td><td>Sai</td><td><b style="color: #e11d48;">Sai</b></td></tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <section>
-                <h2>4. Ký hiệu $\forall$ và $\exists$</h2>
-                <div class="dn">
-                    - $\forall$: "Với mọi".<br>
-                    - $\exists$: "Tồn tại" (có ít nhất một).
-                </div>
-
-                <div class="chuy">
-                    <ol>
-                        <li>Phủ định của $\forall x \in D, P(x)$ là $\exists x \in D, \overline{P(x)}$.</li>
-                        <li>Phủ định của $\exists x \in D, P(x)$ là $\forall x \in D, \overline{P(x)}$.</li>
-                    </ol>
-                </div>
-            </section>
-        </article>
-    </div>
-
-    <footer>
-        <p>© 2026 - Thư Viện Toán Học Education</p>
-    </footer>
+    <footer>
+        <p>© 2026 - Thư Viện Toán Học Education</p>
+    </footer>
 </body>
 </html>
