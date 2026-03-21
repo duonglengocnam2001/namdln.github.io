@@ -1,311 +1,37 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toán 10 - Thư viện Tài liệu</title>
-
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Tài Liệu Toán Học</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<style>
-/* ================== CẤU HÌNH MÀU ================== */
-:root{
-  --primary:#1e293b;   /* Màu chính (header, chữ chính) */
-  --accent:#3b82f6;    /* Màu nhấn (hover, button) */
-  --white:#ffffff;     /* Màu nền card */
-  --bg:#eef2f7;        /* Màu nền toàn trang */
-  --header-title: #020617;
-  --text-p: #4b5563; /* Màu xám đậm cho chế độ sáng */
-  --p-size: 1rem;    /* Kích thước mặc định */
-}
-/* ================== DARK MODE ================== */
-.dark{
-  --primary:#e2e8f0;   /* chữ sáng */
-  --bg:#020617;        /* nền tối */
-  --white:#111827;     /* nền card */
-  --header-title: #eef2f7;
-  --text-p: #e2e8f0; /* Màu xám đậm cho chế độ sáng */
-  --p-size: 1rem;    /* Kích thước mặc định */
-}
-
-/* Sửa màu chữ khi dark mode */
-.dark body{
-  color:#e5e7eb;
-}
-
-.dark .card{
-  color:#e5e7eb;
-}
-
-.dark footer{
-  color:#9ca3af;
-}
-/* ================== P ================== */
-p {
-  color: var(--text-p);
-  font-size: var(--p-size);
-  transition: all 0.3s ease; /* Hiệu ứng đổi màu mượt mà */
-}
-/* ================== CẤU TRÚC CHUNG ================== */
-body{
-  margin:0;
-  font-family:'Calibri', Helvetica, Arial, sans-serif;
-  background:var(--bg);
-  display:flex;
-  flex-direction:column;
-  min-height:100vh;
-}
-
-/* ================== HEADER ================== */
-header{
-  background: #eef2f7;
-  color:black;
-  padding:60px 20px;
-  text-align:center;
-}
-/* Header khi dark mode */
-.dark header{
-  background:linear-gradient(0deg,#020617,#040F2B);
-}
-header h1 {
-  margin: 0;
-  font-size: 4rem;
-  font-family:'Calibri', Helvetica, Arial, sans-serif;
-  /* Màu mặc định khi ở chế độ SÁNG */
-  color: #020617; 
-  transition: color 0.5s ease;
-}
-.dark header h1 {
-  font-family:'Calibri', Helvetica, Arial, sans-serif;
-  margin: 0;
-  font-size: 4rem;
-  /* Màu mặc định khi ở chế độ SÁNG */
-  color: #eef2f7; 
-  transition: color 0.3s ease;
-}
-header p{
-  opacity:1;
-}
-/* ================== LƯỚI 4 Ô ================== */
-.main-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); /* Tự chia cột */
-  gap:40px;
-  max-width:1500px;
-  margin:auto;
-  padding:40px 20px;
-  width:100%;
-}
-
-/* ================== Ô ================== */
-.card{
-  background:var(--white);
-  height:250px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  border-radius:15px;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 10px 25px rgba(0,0,0,0.08);
-  text-decoration:none;
-  color:var(--primary);
-  font-weight:bold;
-  font-size:2rem;
-  transition:all 0.3s ease;
-}
-
-/* Icon chính giữa card */
-.card i.main-icon{
-  font-size:3rem;
-  margin-bottom:10px;
-  color:var(--accent);
-}
-
-/* Hiệu ứng hover */
-.card:hover{
-  transform:translateY(0px) scale(1.2);
-  box-shadow:0 20px 40px rgba(59,130,246,0.25);
-}
-
-/* ================== LỚP PHỦ (HOVER) ================== */
-.overlay{
-  position:absolute;
-  inset:0;
-  background:rgba(59,130,246,0.95);
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  opacity:0; /* Ẩn mặc định */
-  transition:0.3s;
-  color:white;
-}
-
-.card:hover .overlay{
-  opacity:1.5; /* Hiện khi hover */
-}
-
-.overlay i{
-  font-size:3rem;
-  margin-bottom:10px;
-}
-
-.overlay span{
-  font-size:2rem;
-  letter-spacing:1px;
-}
-
-/* ================== FOOTER ================== */
-
-footer{
-  text-align: center;
-  padding: 40px;
-  font-size: 0.8rem;
-  color: #666;
-  width: 100%;
-}
-
-/* ================== NÚT DARK MODE ================== */
-/* Nút bật dark mode */
-/* Giữ vị trí cố định góc trên bên phải */
-.toggle {
-  position: absolute;
-  top: 30px;
-  right: 30px;
-  width: 50px;
-  height: 25.5px;
-  display: inline-block;
-  z-index: 1000; /* Đảm bảo nút luôn nằm trên cùng */
-}
-
-/* Ẩn checkbox gốc */
-.toggle input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* Phần nền của thanh trượt */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: #ccc;
-  transition: .4s;
-  border-radius: 34px;
-}
-
-/* Nút tròn màu trắng di chuyển bên trong */
-.slider:before {
-  position: absolute;
-  content: "🌙";text-indent: 23.5px;
-  height: 20px;
-  width: 20px;
-  left: 3px;
-  bottom: 3px;
-  background-color: white;
-  transition: .4s;
-  border-radius: 50%;
-}
-
-/* Khi được bật (Dark Mode) - Đổi sang màu Teal */
-input:checked + .slider {
-  background-color: #11a6a1;
-}
-/* Hiệu ứng trượt nút trắng sang phải */
-input:checked + .slider:before {
-  content: "☀️";text-indent: -24.5px;
-  transform: translateX(25px);
-}
-</style>
+    <style>
+        :root{ --primary:#1e293b; --accent:#3b82f6; --white:#ffffff; --bg:#eef2f7; --text-p: #4b5563; }
+        body{ margin:0; font-family:'Segoe UI', Arial, sans-serif; background:var(--bg); display:flex; flex-direction:column; min-height:100vh; color: var(--primary); }
+        header{ background: #eef2f7; padding:60px 20px; text-align:center; }
+        header h1 { margin: 0; font-size: 4rem; color: #020617; }
+        header p{ color: var(--text-p); font-size: 24px; margin: 5px 0; }
+        .main-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; max-width:1500px; margin:auto; padding:40px 20px; width:100%; box-sizing: border-box; }
+        .card{ background:var(--white); height:250px; display:flex; flex-direction:column; justify-content:center; align-items:center; border-radius:15px; position:relative; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.08); text-decoration:none; color:var(--primary); font-weight:bold; font-size:2rem; transition:0.3s ease; }
+        .card i.main-icon{ font-size:3rem; margin-bottom:10px; color:var(--accent); }
+        .card:hover{ transform:scale(1.1); box-shadow:0 20px 40px rgba(59,130,246,0.25); }
+        .overlay{ position:absolute; inset:0; background:rgba(59,130,246,0.95); display:flex; flex-direction:column; justify-content:center; align-items:center; opacity:0; transition:0.3s; color:white; }
+        .card:hover .overlay{ opacity:1; }
+        .overlay i{ font-size:3rem; margin-bottom:10px; }
+        .overlay span{ font-size:2rem; }
+        footer{ text-align: center; padding: 40px; font-size: 0.8rem; color: #666; }
+    </style>
 </head>
 <body>
-  <script>
-    // Kiểm tra và áp dụng theme NGAY LẬP TỨC
-    (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark') {
-        document.body.classList.add('dark');
-      }
-    })();
-  </script>
-<!-- Nút bật/tắt dark mode -->
-<label class="switch toggle">
-  <input type="checkbox" onclick="toggleDark()">
-  <span class="slider"></span>
-</label>
-
-<header>
-  <h1>Tài Liệu Toán Học</h1>
-  <p style="font-size: 24px;">Chào mừng bạn đến với Thư Viện Toán Học Online! Đây là nơi tổng hợp các tài liệu, bài giảng, đề thi,</p>
-  <p style="font-size: 24px;">và các hướng dẫn chi tiết giúp học sinh và sinh viên nâng cao kiến thức toán học từ cơ bản đến nâng cao. </p>
-</header>
-
-<!-- ================== DANH SÁCH KHỐI ================== -->
-<div class="main-grid">
-
-<!-- CARD 1 -->
-<a href="lop10.html" class="card">
-  <i class="fas fa-calculator main-icon"></i>
-  Toán 10
-  <div class="overlay">
-    <i class="fas fa-file-pdf"></i>
-    <span>Xem tài liệu</span>
-  </div>
-</a>
-
-<!-- CARD 2 -->
-<a href="lop11.html" class="card">
-  <i class="fas fa-chart-line main-icon"></i>
-  Toán 11
-  <div class="overlay">
-    <i class="fas fa-book"></i>
-    <span>Xem tài liệu</span>
-  </div>
-</a>
-
-<!-- CARD 3 -->
-<a href="lop12.html" class="card">
-  <i class="fas fa-graduation-cap main-icon"></i>
-  Toán 12
-  <div class="overlay">
-    <i class="fas fa-file"></i>
-    <span>Xem tài liệu</span>
-  </div>
-</a>
-
-<!-- CARD 4 -->
-<a href="daihoc.html" class="card">
-  <i class="fas fa-university main-icon"></i>
-  Đại học
-  <div class="overlay">
-    <i class="fas fa-folder-open"></i>
-    <span>Xem tài liệu</span>
-  </div>
-</a>
-</div>
-<footer>
-© 2026 - Math Library
-</footer>
-
-<script>
-  function toggleMode() {
-    // 1. Thực hiện đổi màu
-    const isDark = document.body.classList.toggle('dark');
-    
-    // 2. Ghi nhớ vào bộ nhớ trình duyệt
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    
-    // 3. (Nếu có dùng nhãn chữ) Cập nhật trạng thái chữ
-    const label = document.querySelector('.lamp-label');
-    if (label) {
-      label.innerText = isDark ? 'Dark' : 'Light';
-    }
-  }
-</script>
+    <header>
+        <h1>Tài Liệu Toán Học</h1>
+        <p>Chào mừng bạn đến với Thư Viện Toán Học Online! Đây là nơi tổng hợp các tài liệu, bài giảng, đề thi,</p>
+        <p>và các hướng dẫn chi tiết giúp học sinh và sinh viên nâng cao kiến thức toán học.</p>
+    </header>
+    <div class="main-grid">
+        <a href="lop10.html" class="card"><i class="fas fa-calculator main-icon"></i>Toán 10<div class="overlay"><i class="fas fa-file-pdf"></i><span>Xem tài liệu</span></div></a>
+        <a href="lop11.html" class="card"><i class="fas fa-chart-line main-icon"></i>Toán 11<div class="overlay"><i class="fas fa-book"></i><span>Xem tài liệu</span></div></a>
+        <a href="lop12.html" class="card"><i class="fas fa-graduation-cap main-icon"></i>Toán 12<div class="overlay"><i class="fas fa-file"></i><span>Xem tài liệu</span></div></a>
+        <a href="daihoc.html" class="card"><i class="fas fa-university main-icon"></i>Đại học<div class="overlay"><i class="fas fa-folder-open"></i><span>Xem tài liệu</span></div></a>
+    </div>
+    <footer>© 2026 - Math Library</footer>
 </body>
 </html>
