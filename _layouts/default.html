@@ -4,65 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- MathJax -->
     <script>
-    window.MathJax = {
-        tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
-        options: { ignoreHtmlClass: 'tex2jax_ignore', processHtmlClass: 'tex2jax_process' }
-    };
+      window.MathJax = {
+        tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] }
+      };
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
-    
-    <style>
-        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; margin: 0; padding: 0; }
-        .nav-header { background: white; padding: 15px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; display: flex; align-items: center; gap: 20px; z-index: 1000; }
-        .back-link { text-decoration: none; color: #11a6a1; font-weight: bold; }
-
-        .main-container { display: flex; justify-content: center; gap: 30px; max-width: 1300px; margin: 30px auto; padding: 0 20px; align-items: flex-start; }
-
-        .sidebar { width: 300px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); position: sticky; top: 90px; }
-        .sidebar h3 { font-size: 0.8rem; color: #94a3b8; letter-spacing: 1px; margin-top: 0; }
-        .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar a { text-decoration: none; color: #475569; display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 8px; transition: 0.2s; }
-        .sidebar a:hover, .sidebar a.active { background: #f0fdfa; color: #11a6a1; font-weight: 600; }
-        .sidebar hr { border: 0; border-top: 1px solid #f1f5f9; margin: 10px 0; }
-
-        .content-area { flex: 1; max-width: 900px; background: white; padding: 50px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: justify; }
-
-        h1 { color: #020617; border-left: 5px solid #11a6a1; padding-left: 15px; margin-top: 0; }
-        .dn { background: #f0fdfa; border-left: 4px solid #11a6a1; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
-        .dn::before { content: "Định nghĩa:"; font-weight: bold; color: #11a6a1; display: block; margin-bottom: 5px; }
-        .vidu { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; margin: 20px 0; border-radius: 10px; }
-        .vidu::before { content: "Ví dụ:"; font-weight: bold; color: #64748b; display: block; margin-bottom: 5px; }
-        .chuy { background: #fffbeb; border-left: 4px solid #f59e0b; padding: 20px; margin: 20px 0; border-radius: 0 10px 10px 0; }
-        .chuy::before { content: "Chú ý:"; font-weight: bold; color: #d97706; display: block; margin-bottom: 5px; }
-        
-        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; }
-        th, td { border: 1px solid #e2e8f0; padding: 12px; text-align: center; }
-        th { background: #f1f5f9; color: #475569; }
-
-        .quiz-wrapper { background: #ffffff; padding: 30px; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); margin: 40px 0; }
-        .opt-btn { width: 100%; padding: 15px; border: 2px solid #e2e8f0; border-radius: 10px; background: none; cursor: pointer; text-align: left; font-size: 1rem; transition: 0.2s; margin-bottom: 10px; }
-        .opt-btn:hover { border-color: #11a6a1; background: #f0fdfa; }
-        .opt-btn.correct { background: #dcfce7; border-color: #22c55e; color: #15803d; font-weight: bold; }
-        .opt-btn.wrong { background: #fee2e2; border-color: #ef4444; color: #b91c1c; }
-
-        footer { text-align: center; padding: 30px; color: #64748b; font-size: 0.9rem; clear: both; }
-
-        @media (max-width: 900px) { .main-container { flex-direction: column; align-items: center; } .sidebar { width: 100%; position: static; } }
-    </style>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 <body>
-    <div class="nav-header">
-        <a href="/" class="back-link"><i class="fas fa-arrow-left"></i> Quay lại</a>
-        <span style="color: #cbd5e1;">|</span>
-        <strong>{{ page.chapter }}</strong>
-    </div>
+
+    {% include header.html %}
 
     <div class="main-container">
-        {% include sidebar.html %} <main class="content-area">
-            {{ content }} </main>
+        {% include sidebar.html %}
+
+        <div class="content-area">
+            {{ content }}
+        </div>
     </div>
+
     <footer>© 2026 - Math Library Education</footer>
+
 </body>
 </html>
