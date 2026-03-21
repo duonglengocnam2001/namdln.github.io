@@ -285,10 +285,20 @@ input:checked + .slider:before {
 
 <script>
 /* ================== DARK MODE FUNCTION ================== */
-function toggleDark(){
-  document.body.classList.toggle('dark');
+// 1. Hàm này dùng để bấm bật/tắt
+function toggleMode() {
+    const isDark = document.body.classList.toggle('dark');
+    // Lưu trạng thái "dark" hoặc "light" vào bộ nhớ trình duyệt
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
 }
-</script>
 
+// 2. Hàm này tự động chạy khi bạn vừa mở trang hoặc chuyển trang
+(function() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark');
+    }
+})();
+</script>
 </body>
 </html>
