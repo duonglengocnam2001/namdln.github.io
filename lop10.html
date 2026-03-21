@@ -233,11 +233,12 @@
 </head>
 <body>
   <script>
-    // Kiểm tra và áp dụng theme NGAY LẬP TỨC
     (function() {
       const savedTheme = localStorage.getItem('theme');
       if (savedTheme === 'dark') {
         document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
       }
     })();
   </script>
@@ -301,13 +302,13 @@
 
 <script>
   function toggleMode() {
-    // 1. Đổi lớp dark cho body
+    // 1. Thực hiện đổi màu
     const isDark = document.body.classList.toggle('dark');
     
-    // 2. Ghi đè trạng thái mới vào bộ nhớ
+    // 2. Ghi nhớ vào bộ nhớ trình duyệt
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     
-    // 3. (Tùy chọn) Cập nhật nhãn chữ nếu bạn có dùng .lamp-label
+    // 3. (Nếu có dùng nhãn chữ) Cập nhật trạng thái chữ
     const label = document.querySelector('.lamp-label');
     if (label) {
       label.innerText = isDark ? 'Dark' : 'Light';
