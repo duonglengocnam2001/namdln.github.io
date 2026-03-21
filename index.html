@@ -7,6 +7,7 @@
 
 <!-- ICON (Font Awesome) -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<FontAwesomeIcon :icon="byPrefixAndName.fab['tex']" />
 <style>
 /* ================== CẤU HÌNH MÀU ================== */
 :root{
@@ -30,7 +31,7 @@ body{
 header{
   background: #eef2f7;
   color:black;
-  padding:40px 20px;
+  padding:60px 20px;
   text-align:center;
 }
 /* Header khi dark mode */
@@ -40,11 +41,13 @@ header{
 header h1 {
   margin: 0;
   font-size: 4rem;
+  font-family:'Calibri', Helvetica, Arial, sans-serif;
   /* Màu mặc định khi ở chế độ SÁNG */
   color: #020617; 
-  transition: color 0.3s ease;
+  transition: color 0.5s ease;
 }
 .dark header h1 {
+  font-family:'Calibri', Helvetica, Arial, sans-serif;
   margin: 0;
   font-size: 4rem;
   /* Màu mặc định khi ở chế độ SÁNG */
@@ -52,7 +55,7 @@ header h1 {
   transition: color 0.3s ease;
 }
 header p{
-  opacity:0.8;
+  opacity:1;
 }
 /* ================== LƯỚI 4 Ô ================== */
 .main-grid{
@@ -73,27 +76,27 @@ header p{
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  border-radius:20px;
+  border-radius:15px;
   position:relative;
   overflow:hidden;
   box-shadow:0 10px 25px rgba(0,0,0,0.08);
   text-decoration:none;
   color:var(--primary);
   font-weight:bold;
-  font-size:1.4rem;
+  font-size:2rem;
   transition:all 0.3s ease;
 }
 
 /* Icon chính giữa card */
 .card i.main-icon{
-  font-size:2.2rem;
+  font-size:3rem;
   margin-bottom:10px;
   color:var(--accent);
 }
 
 /* Hiệu ứng hover */
 .card:hover{
-  transform:translateY(-10px) scale(1.2);
+  transform:translateY(0px) scale(1.2);
   box-shadow:0 20px 40px rgba(59,130,246,0.25);
 }
 
@@ -112,16 +115,16 @@ header p{
 }
 
 .card:hover .overlay{
-  opacity:1.1; /* Hiện khi hover */
+  opacity:1.5; /* Hiện khi hover */
 }
 
 .overlay i{
-  font-size:2.5rem;
+  font-size:3rem;
   margin-bottom:10px;
 }
 
 .overlay span{
-  font-size:0.9rem;
+  font-size:2rem;
   letter-spacing:1px;
 }
 
@@ -154,25 +157,66 @@ footer{
 }
 
 /* Nút bật dark mode */
-.toggle{
-  position:fixed;
-  top:15px;
-  right:15px;
-  background:white;
-  border:none;
-  padding:8px 12px;
-  border-radius:8px;
-  cursor:pointer;
-  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+/* Giữ vị trí cố định góc trên bên phải */
+.toggle {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 50px;
+  height: 25.5px;
+  display: inline-block;
+  z-index: 1000; /* Đảm bảo nút luôn nằm trên cùng */
 }
 
+/* Ẩn checkbox gốc */
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Phần nền của thanh trượt */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+/* Nút tròn màu trắng di chuyển bên trong */
+.slider:before {
+  position: absolute;
+  content: "🌙";text-indent: 23.5px;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+/* Khi được bật (Dark Mode) - Đổi sang màu Teal */
+input:checked + .slider {
+  background-color: #11a6a1;
+}
+
+/* Hiệu ứng trượt nút trắng sang phải */
+input:checked + .slider:before {
+  content: "☀️";text-indent: -24.5px;
+  transform: translateX(25px);
+}
 </style>
 </head>
 
 <body>
-
 <!-- Nút bật/tắt dark mode -->
-<button class="toggle" onclick="toggleDark()">🌙</button>
+<label class="switch toggle">
+  <input type="checkbox" onclick="toggleDark()">
+  <span class="slider"></span>
+</label>
 
 <header>
   <h1>Tài Liệu Toán Học</h1>
@@ -184,7 +228,7 @@ footer{
 
 <!-- CARD 1 -->
 <a href="lop10.html" class="card">
-  <i class="fas fa-function main-icon"></i>
+  <i class="fas fa-calculator main-icon"></i>
   Toán 10
   <div class="overlay">
     <i class="fas fa-file-pdf"></i>
@@ -221,8 +265,6 @@ footer{
     <span>Xem tài liệu</span>
   </div>
 </a>
-
-</div>
 
 <footer>
 © 2026 - Math Library
