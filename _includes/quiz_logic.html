@@ -1,0 +1,63 @@
+<div class="quiz-wrapper" id="quiz-app">
+    <div id="start-screen" onclick="startQuiz()" style="text-align: center; padding: 40px; background: #f0fdfa; border: 2px dashed #11a6a1; border-radius: 12px; cursor: pointer;">
+        <i class="fas fa-edit" style="font-size: 2.5rem; color: #11a6a1; margin-bottom: 15px; display: block;"></i>
+        <h2 style="margin: 10px 0;">Kiểm tra nhanh kiến thức</h2>
+        <p>Nhấn vào đây để bắt đầu làm bài trắc nghiệm</p>
+    </div>
+
+    <div id="quiz-content" style="display: none;">
+        <div class="question-text" id="q-text" style="font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;"></div>
+        <div class="options-grid" id="q-options"></div>
+        <div style="margin-top: 25px; display: flex; justify-content: space-between; align-items: center;">
+            <span id="q-progress" style="color: #64748b;"></span>
+            <button id="next-btn" onclick="nextQuestion()" style="padding: 10px 25px; background: #11a6a1; color: white; border: none; border-radius: 8px; cursor: pointer; display: none;">Câu tiếp theo</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Logic này sẽ dùng chung cho mọi bài giảng
+    let currentQ = 0, score = 0;
+    const shuffle = (arr) => arr.sort(() => Math.random() - 0.5);
+
+    function startQuiz() {
+        shuffle(quizData); // quizData sẽ được định nghĩa riêng ở mỗi bài giảng
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quiz-content').style.display = 'block';
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        const q = quizData[currentQ];
+        document.getElementById('q-text').innerHTML = q.title + "<br>" + q.content;
+        document.getElementById('q-progress').innerText = `Câu ${currentQ + 1}/${quizData.length}`;
+        const grid = document.getElementById('q-options');
+        grid.innerHTML = '';
+        
+        shuffle([...q.options]).forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'opt-btn';
+            btn.innerHTML = opt;
+            btn.onclick = () => {
+                const all = document.querySelectorAll('.opt-btn');
+                all.forEach(b => { 
+                    b.style.pointerEvents = 'none'; 
+                    if(b.innerHTML === q.answer) b.classList.add('correct'); 
+                });
+                if(opt === q.answer) score++; else btn.classList.add('wrong');
+                document.getElementById('next-btn').style.display = 'block';
+            };
+            grid.appendChild(btn);
+        });
+        document.getElementById('next-btn').style.display = 'none';
+        if (window.MathJax) MathJax.typesetPromise();
+    }
+
+    function nextQuestion() {
+        currentQ++;
+        if (currentQ < quizData.length) loadQuestion();
+        else {
+            document.getElementById('quiz-app').innerHTML = `<div style="text-align:center;"><h2>Hoàn thành!</h2><p>Kết quả: ${score}/${quizData.length}</p><button onclick="location.reload()" class="opt-btn" style="text-align:center; background:#11a6a1; color:white;">Làm lại</button></div>`;
+        }
+    }
+</script>
