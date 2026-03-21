@@ -16,6 +16,36 @@
   --white:#ffffff;     /* Màu nền card */
   --bg:#eef2f7;        /* Màu nền toàn trang */
   --header-title: #020617;
+  --text-p: #4b5563; /* Màu xám đậm cho chế độ sáng */
+  --p-size: 1rem;    /* Kích thước mặc định */
+}
+/* ================== DARK MODE ================== */
+.dark{
+  --primary:#e2e8f0;   /* chữ sáng */
+  --bg:#020617;        /* nền tối */
+  --white:#111827;     /* nền card */
+  --header-title: #eef2f7;
+  --text-p: #e2e8f0; /* Màu xám đậm cho chế độ sáng */
+  --p-size: 1rem;    /* Kích thước mặc định */
+}
+
+/* Sửa màu chữ khi dark mode */
+.dark body{
+  color:#e5e7eb;
+}
+
+.dark .card{
+  color:#e5e7eb;
+}
+
+.dark footer{
+  color:#9ca3af;
+}
+/* ================== P ================== */
+p {
+  color: var(--text-p);
+  font-size: var(--p-size);
+  transition: all 0.3s ease; /* Hiệu ứng đổi màu mượt mà */
 }
 /* ================== CẤU TRÚC CHUNG ================== */
 body{
@@ -129,33 +159,16 @@ header p{
 }
 
 /* ================== FOOTER ================== */
+
 footer{
-  text-align:center;
-  padding:100px;
-  font-size:0.8rem;
-  color:#666;
+  text-align: center;
+  padding: 40px;
+  font-size: 0.8rem;
+  color: #666;
+  width: 100%;
 }
 
-/* ================== DARK MODE ================== */
-.dark{
-  --primary:#e2e8f0;   /* chữ sáng */
-  --bg:#020617;        /* nền tối */
-  --white:#111827;     /* nền card */
-  --header-title: #eef2f7;}
-
-/* Sửa màu chữ khi dark mode */
-.dark body{
-  color:#e5e7eb;
-}
-
-.dark .card{
-  color:#e5e7eb;
-}
-
-.dark footer{
-  color:#9ca3af;
-}
-
+/* ================== NÚT DARK MODE ================== */
 /* Nút bật dark mode */
 /* Giữ vị trí cố định góc trên bên phải */
 .toggle {
@@ -202,7 +215,6 @@ footer{
 input:checked + .slider {
   background-color: #11a6a1;
 }
-
 /* Hiệu ứng trượt nút trắng sang phải */
 input:checked + .slider:before {
   content: "☀️";text-indent: -24.5px;
@@ -210,7 +222,6 @@ input:checked + .slider:before {
 }
 </style>
 </head>
-
 <body>
 <!-- Nút bật/tắt dark mode -->
 <label class="switch toggle">
@@ -220,7 +231,8 @@ input:checked + .slider:before {
 
 <header>
   <h1>Tài Liệu Toán Học</h1>
-  <p></p>
+  <p style="font-size: 24px;">Chào mừng bạn đến với Thư Viện Toán Học Online! Đây là nơi tổng hợp các tài liệu, bài giảng, đề thi,</p>
+  <p style="font-size: 24px;">và các hướng dẫn chi tiết giúp học sinh và sinh viên nâng cao kiến thức toán học từ cơ bản đến nâng cao. </p>
 </header>
 
 <!-- ================== DANH SÁCH KHỐI ================== -->
@@ -265,7 +277,7 @@ input:checked + .slider:before {
     <span>Xem tài liệu</span>
   </div>
 </a>
-
+</div>
 <footer>
 © 2026 - Math Library
 </footer>
