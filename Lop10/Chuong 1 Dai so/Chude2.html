@@ -1,1 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.2. Tập hợp - Phép toán trên tập hợp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = { tex: { inlineMath: [['$', '$']], displayMath: [['$$', '$$']] } };
+    </script>
+    
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; line-height: 1.8; color: #1e293b; background: #f8fafc; margin: 0; padding: 0; }
+        
+        /* Header */
+        .nav-header { background: white; padding: 15px 5%; box-shadow: 0 2px 5px rgba(0,0,0,0.05); position: sticky; top: 0; display: flex; align-items: center; gap: 20px; z-index: 1000; }
+        .back-link { text-decoration: none; color: #11a6a1; font-weight: bold; transition: 0.3s; }
+        .back-link:hover { color: #0d8a86; }
 
+        /* Container chính */
+        .main-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px; /* Tăng khoảng cách cho thoáng */
+            max-width: 1300px;
+            margin: 40px auto;
+            padding: 0 20px;
+            align-items: flex-start;
+        }
+
+        /* Sidebar - Giữ nguyên phong cách ban đầu */
+        .sidebar {
+            width: 300px;
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            position: sticky;
+            top: 100px;
+        }
+        .sidebar h3 { font-size: 0.8rem; color: #94a3b8; letter-spacing: 1px; margin-bottom: 20px; text-transform: uppercase; }
+        .sidebar ul { list-style: none; padding: 0; margin: 0; }
+        .sidebar a { text-decoration: none; color: #475569; display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 10px; transition: 0.3s; }
+        .sidebar a:hover, .sidebar a.active { background: #f0fdfa; color: #11a6a1; font-weight: 600; }
+
+        /* Content Area - Phục hồi độ rộng và padding */
+        .content-area {
+            flex: 1;
+            max-width: 900px;
+            background: white;
+            padding: 50px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            text-align: justify;
+        }
+
+        /* Nút điều hướng phía trên */
+        .top-pagination {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            background: #f8fafc;
+            color: #11a6a1;
+            font-weight: 500;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+        .nav-btn:hover { background: #f0fdfa; border-color: #11a6a1; }
+        .nav-btn .text-label { display: flex; flex-direction: column; line-height: 1.2; }
+        .nav-btn .sub { font-size: 0.7rem; color: #94a3b8; text-transform: uppercase; }
+
+        /* Typography & Boxes */
+        h1 { color: #020617; border-left: 6px solid #11a6a1; padding-left: 20px; margin-bottom: 30px; font-size: 2.2rem; }
+        h2 { color: #334155; margin-top: 40px; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; }
+        
+        .dn { background: #f0fdfa; border-left: 4px solid #11a6a1; padding: 25px; margin: 30px 0; border-radius: 0 12px 12px 0; }
+        .dn::before { content: "Định nghĩa"; font-weight: bold; color: #11a6a1; display: block; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; }
+        
+        .vidu { background: #f8fafc; border: 1px solid #e2e8f0; padding: 25px; margin: 30px 0; border-radius: 12px; }
+        .vidu::before { content: "Ví dụ"; font-weight: bold; color: #64748b; display: block; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; }
+        
+        .chuy { background: #fdf0f0; border-left: 4px solid #A61116; padding: 25px; margin: 30px 0; border-radius: 0 12px 12px 0; }
+        .chuy::before { content: "Chú ý"; font-weight: bold; color: #A61116; display: block; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 30px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px #e2e8f0; }
+        th, td { padding: 16px; border: 1px solid #e2e8f0; text-align: center; }
+        th { background: #f8fafc; color: #475569; }
+
+        footer { text-align: center; padding: 50px; color: #94a3b8; }
+
+        @media (max-width: 1100px) {
+            .main-container { flex-direction: column; }
+            .sidebar { width: 100%; position: static; }
+            .content-area { padding: 35px; }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="nav-header">
+        <a href="../../lop10.html" class="back-link"><i class="fas fa-arrow-left"></i> Quay lại</a>
+        <span style="color: #cbd5e1;">|</span>
+        <strong>Chương 1: Mệnh đề và tập hợp</strong>
+    </header>
+
+    <div class="main-container">
+        <aside class="sidebar">
+            <h3>Danh mục bài học</h3>
+            <ul>
+                <li><a href="Chude1.html" ><i class="fas fa-book"></i> 1.1. Mệnh đề</a></li>
+                <li><a href="Chude2.html" class="active"><i class="fas fa-layer-group"></i> 1.2. Tập hợp & Phép toán</a></li>
+                <li><hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 15px 0;"></li>
+                <li><a href="on-tap.html"><i class="fas fa-edit"></i> Ôn tập chương 1</a></li>
+            </ul>
+        </aside>
+
+        <article class="content-area">
+            <div class="top-pagination">
+                <a href="Chude1.html" class="nav-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <div class="text-label">
+                        <span class="sub">Bài trước</span>
+                    </div>
+                </a>
+            
+                <a href="Chude2.html" class="nav-btn" style="visibility: hidden;">
+                    <div class="text-label" style="text-align: right;">
+                        <span class="sub">Bài tiếp theo</span>
+                    </div>
+                    <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+
+            <h1>1.2. Tập hợp - Phép toán trên tập hợp</h1>
+            <section>
+                <h2>Tập hợp và phần tử</h2>
+                <p><i>Tập hợp</i> (hay <i>tập</i>) là một khái niệm cơ bản trong Toán học và không có định nghĩa về tập hợp. Các tập hợp thường được ký hiệu bằng chứ cái $A,B,C,\cdots$. Xét tập hợp $A$ và một phần tử $a$. Để chỉ ra rằng phần tử $a$ thuộc $A$, ta ký hiệu $a\in A$. Ngược lại, nếu phần tử $a$ không thuộc tập $A$ thì ta ký hiệu $a\notin A$.</p>  
+            </section>
+            <section>
+              <h2>Các xác định tập hợp</h2>
+              <p>Cho tập hợp $A$. Để biểu thị các phần tử của $A$, người ta thường sử dụng một trong hai cách sau:</p>
+              <ul>
+                <li><i><b style="color:#A61116;">Cách 1:</b></i> Liệt kê tất cả các phần tử</li>
+                <li><i><b style="color:#A61116;">Cách 2:</b></i> Chỉ ra tính chất đặc trưng</li>
+              </ul>
+              <p>Người ta thường minh hoạ tập hợp bằng cách sử dụng một hình phẳng bao quanh bởi một đường kín, gọi là sơ đồ ven.</p>
+              <div style="display:flex; justify-content:center; gap:40px;">
+              <!-- Hình 1 -->
+              <div style="text-align:center;">
+                  <svg width="220" height="180" viewBox="0 0 220 180">
+                    <ellipse cx="110" cy="90" rx="80" ry="50"
+                             transform="rotate(20 110 90)"
+                             fill="none" stroke="black" stroke-width="2"/>
+                    <text x="110" y="70" font-size="18" text-anchor="middle">A</text>
+                  </svg>
+              </div>
+          
+              <!-- Hình 2 -->
+              <div style="text-align:center;">
+                  <svg width="220" height="180" viewBox="0 0 220 180">
+                    <ellipse cx="110" cy="90" rx="80" ry="50"
+                             transform="rotate(20 110 90)"
+                             fill="none" stroke="black" stroke-width="2"/>
+                    <text x="110" y="70" font-size="18" text-anchor="middle">A</text>
+                    <circle cx="110" cy="95" r="3" fill="#7c2d12"/>
+                    <text x="118" y="98" font-size="14">x</text>
+                  </svg>
+              </div>
+            </div>
+          </section>
+          <section>
+            <h2>Tập hợp rỗng</h2>
+            <div class="dn">
+              <i>Tập hợp rỗng</i>, ký hiệu $\emptyset$ là tập hợp không chứa phần tử nào cả. Một tập hợp khác rỗng khi và chỉ khi nó chứa ít nhất một phần tử thực sự. Vậy tập $A\neq\emptyset$ khi và chỉ khi $\exists x\in A$.
+            </div>
+            <p>Ta chú ý tránh nhầm lẫn giữa tập $\emptyset$ và tập $\{\emptyset\}$. Tập hợp $\emptyset$ là tập hợp rỗng, trong khi $\{\emptyset\}$ là tập hợp chứa tập hợp rỗng.</p>
+          </section>
+          <section>
+            <h2>Tập hợp con</h2>
+            <div class="dn">
+              <div style="display:flex; gap:30px; align-items:center; padding-left:15px;">
+                <div style="flex:2;">
+                    Cho hai tập hợp $A$ và $B$. Ta nói $B$ là <i>tập hợp con</i> của $A$, ký hiệu $B\subset A$ nếu mọi phần tử của $B$ đều thuộc $A$. Vậy,
+      	              $$B\subset A\Leftrightarrow \forall x\in B\Rightarrow x\in A.$$
+      	             Ta cũng có thể ký hiệu $A\supset B$ để biểu thị $B$ là tập con của $A$ và đọc là $A$ chứa $B$.
+                </div>
+                <div style="flex:1; text-align:center;">
+                    <img src="1.png"style="max-width:100%; height:auto;">
+                </div>
+              </div>
+            </div>  
+          </section>
+        </article>
+    </div>
+    <footer>
+        <p>© 2026 - Thư Viện Toán Học Education</p>
+    </footer>
+</body>
+</html>
