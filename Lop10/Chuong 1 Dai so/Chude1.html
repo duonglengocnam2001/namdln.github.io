@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bài giảng: Mệnh đề và Tập hợp</title>
+    <title>1.1. Mệnh đề</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>
@@ -90,6 +90,9 @@
         .vidu { background: #f8fafc; border: 1px solid #e2e8f0; padding: 25px; margin: 30px 0; border-radius: 12px; }
         .vidu::before { content: "Ví dụ"; font-weight: bold; color: #64748b; display: block; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; }
         
+        .chuy { background: #fdf0f0; border-left: 4px solid #A61116; padding: 25px; margin: 30px 0; border-radius: 0 12px 12px 0; }
+        .chuy::before { content: "Chú ý"; font-weight: bold; color: #A61116; display: block; margin-bottom: 10px; text-transform: uppercase; font-size: 0.8rem; }
+        
         table { width: 100%; border-collapse: collapse; margin: 30px 0; border-radius: 12px; overflow: hidden; box-shadow: 0 0 0 1px #e2e8f0; }
         th, td { padding: 16px; border: 1px solid #e2e8f0; text-align: center; }
         th { background: #f8fafc; color: #475569; }
@@ -142,8 +145,8 @@
             <h1>1.1. Mệnh đề</h1>
             
             <section>
-                <h2>1. Mệnh đề - Mệnh đề chứa biến</h2>
-                <p>Trong toán học, mọi lập luận và chứng minh đều bắt đầu từ những phát biểu có ý nghĩa xác định. Người ta sử dụng mệnh đề như những "viên gạch" nền tảng để xây dựng nên hệ thống tư duy logic.</p>
+                <h2>Mệnh đề - Mệnh đề chứa biến</h2>
+                <p>Trong toán học, mọi lập luận và chứng minh đều bắt đầu từ những phát biểu có ý nghĩa xác định. Để diễn đạt các ý tưởng một cách rõ ràng và logic, người ta sử dụng mệnh đề – những câu khẳng định có thể được xem là đúng hoặc sai. Việc nghiên cứu mệnh đề và các phép toán logic trên mệnh đề giúp ta hiểu được cấu trúc của lập luận toán học, từ đó xây dựng nên hệ thống suy luận chặt chẽ làm nền tảng cho toàn bộ toán học.</p>
 
                 <div class="dn">
                     <i>Mệnh đề</i> là một câu khẳng định đúng hoặc một câu khẳng định sai. Một mệnh đề không thể vừa đúng vừa sai.
@@ -151,14 +154,45 @@
 
                 <div class="vidu">
                     <ol>
-                        <li>Câu $A$: "<i>$2$ là số nguyên tố</i>" là một mệnh đề đúng.</li>
-                        <li>Câu $B$: "<i>$x^2-2x+1=0$ vô nghiệm</i>" là một mệnh đề sai.</li>
+                        <li>Câu $A:$ "<i>$2$ là số nguyên tố</i>" là một mệnh đề, và đó là mệnh đề đúng.</li>
+		                    <li> Câu $B:$ "<i>Phương trình $x^2-2x+1=0$ vô nghiệm</i>" là một mệnh đề, và đó là mệnh đề đúng.</li>
+		                    <li> Câu $C:$ "<i>Hôm nay trời đẹp quá</i>" không phải là mệnh đề vì ta không điểm tra được tính đúng sai của nó.</li>
                     </ol>
+                </div>
+                <p>Trong toán học, không phải mọi trường hợp đều cho ta mệnh đề, mà một số khẳng định, tại đó tính đúng sai của nó phụ thuộc vào giá trị thay vào. Từ đó dẫn đến khái niệm sau.</p>
+                <div class="dn">
+                    <i>Mệnh đề chứa biến</i> là một câu chứa biến nhận giá trị trong một tập hợp nào đó sao cho ứng với mỗi giá trị của biến thuộc tập hợp đó thì ta có một mệnh đề.
+                </div>
+                <div class="vidu">
+                  Xét câu $P(n)=n^2-2n-1\geq0$ với $n\in\mathbb{N}$. Khi đó đây không phải là một mệnh đề, tuy nhiên khi gán giá trị của $n$ cụ thể, ta thu được các mệnh đề, ví dụ:
+                	<ol>
+                	  <li>Với $n=1$, câu trên trở thành $P(1)=1^2-2.1-1=-2\geq0$, thấy rằng đây là một mệnh đề sai.</li> 
+                		<li>Với $n=3$, câu trên trở thành $P(1)=3^2-2.3-1=2\geq0$, rõ ràng đây là một mệnh đề đúng.</li>
+                	</ol>
                 </div>
             </section>
 
             <section>
-                <h2>2. Bảng chân trị mệnh đề kéo theo</h2>
+                <h2>Phủ định của một mệnh đề</h2>
+                <p>Khi tìm hiểu về mệnh đề, người ta còn quan tâm đến phủ định của nó, tức phát biểu ngược lại của mệnh đề. Việc hiểu rõ phủ định giúp ta diễn đạt các mệnh đề theo cách logic hoặc ngắn gọn hơn.</p>
+                <div class="dn">
+                  Cho mệnh đề $P$, khẳng định "không phải $P$" là một mệnh đề, gọi là <i>mệnh đề phủ định của mệnh đề $P$</i>, và được ký hiệu $\overline{P}$. Nếu mệnh đề $P$ đúng thì $\overline{P}$ sai, và ngược lại.
+                </div>
+            </section>
+            <section>
+                <h2>Mệnh đề kéo theo - mệnh đề đảo - hai mệnh đề tương đương</h2>
+                <p>Khi ta xác lập được các mệnh đề, người ta thường tìm hiểu mối liên hệ giữa các mệnh đề đó. Bằng các liên từ biểu thị mỗi quan hệ, ta xây dựng được các phép toán mệnh đề sau.</p>
+                <div class="dn">
+                  Cho hai mệnh đề $P$ và $Q$. Xét câu "<i>Nếu $P$ thì $Q$</i>", khi đó câu trên là một mệnh đề, và ta gọi nó là <i>mệnh đề kéo theo</i>. Mệnh đề kéo theo thường ký hiệu $P\Rightarrow Q$.
+                </div>
+                <div class="vidu">
+                  Cho mệnh đề $A:$ "<i>Hà Nội là thủ đô của Việt Nam</i>" và $B:$ "<i>$3$ là số chẵn</i>", khi đó ta có mệnh đề kéo theo:
+                	<ol>
+                	  <li>$A\Rightarrow B:$ "<i>Nếu Hà Nội là thủ đô của Việt Nam thì $3$ là số chẵn</i>" là một mệnh đề sai, vì $A$ đúng, $B$ sai.</li>
+                		<li>$B\Rightarrow A:$ "<i>Nếu $3$ là số chẵn thì Hà Nội là thủ đô của Việt Nam</i>" là một mệnh đề đúng, vì $B$ sai, $A$ đúng.</li>
+                	</ol>
+                </div>
+                <p>Khi xét mệnh đề kéo theo $P\Rightarrow Q$, ta quan tâm đến tính đúng sai của nó. Trong logic toán học, một mệnh đề kéo theo $P\Rightarrow Q$ chỉ sai khi $P$ đúng, $Q$ sai. Ta có thể biểu thị tính đúng, sai của mệnh đề kéo theo bằng bảng giá trị sau đây:</p>
                 <table>
                     <thead>
                         <tr>
@@ -173,6 +207,85 @@
                         <tr><td>Đúng</td><td>Sai</td><td><b style="color: #e11d48;">Sai</b></td></tr>
                     </tbody>
                 </table>
+                <p>Thông thường, trong toán học, ta xét mệnh đề kéo theo ở dưới dạng định lý, và là mệnh đề đúng, giả sử định lý "\textit{Nếu tam giác $ABC$ vuông tại $A$ thì $\widehat{B}&lt; 90^o$}". Khi đó, các mệnh đề $P$ và $Q$ trong $P\Rightarrow Q$ được gọi dưới dạng sau.</p>
+                <div class="dn">
+                  	Xét định lý $P\Rightarrow Q$ trong toán học, khi đó:
+                  	<ol>
+                  	  <li>$P$ là <i>giả thiết</i>, $Q$ là <i>kết luận</i> của định lý, hoặc:</li>
+                  		<li>$P$ là <i>điều kiện đủ</i> để có $Q$, $Q$ là <i>điều kiện cần</i> để có $P$.</li>
+                  	</ol>
+                </div>
+                <p>Trong định lý "<i>Nếu tam giác $ABC$ vuông tại $A$ thì $\widehat{B}&lt;90^\circ$</i>", khi đó điều kiện đủ của định lý là "Tam giác $ABC$ vuông tại $A$" và điều kiện cần là "$\widehat{B}&lt;90^o$".</p>
+                <p>Cho $P$ và $Q$ là các mệnh đề, khi đó ta có mệnh đề kéo theo $P\Rightarrow Q$. Hơn nữa, ta hoàn toàn xây dựng được mệnh đề kéo theo $Q\Rightarrow P$. Mệnh đề này được định nghĩa dưới dạng.</p>
+                <div class="dn">
+                  Xét mệnh đề kéo theo $P\Rightarrow Q$, khi đó câu $Q\Rightarrow P$ cũng là một mệnh đề, ta gọi đó là <i>mệnh đề đảo</i> của mệnh đề $P\Rightarrow Q$. Chú ý rằng Mệnh đề đảo của mệnh đề đúng không nhất thiết là đúng.
+                </div>
+                <p>Cho các mệnh đề $P$ và $Q$, khi đó ta có bảng giá trị của $P\Rightarrow Q$ và $Q\Rightarrow P$ dạng</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>$P$</th>
+                            <th>$Q$</th>
+                            <th>$P \Rightarrow Q$</th>
+                            <th>$Q \Rightarrow P$</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Đúng</td><td>Đúng</td><td>Đúng</td><td>Đúng</td></tr>
+                        <tr><td>Sai</td><td>Đúng</td><td>Đúng</td><td><b>Sai</b></td></tr>
+                        <tr><td>Đúng</td><td>Sai</td><td><b>Sai</b></td><td>Đúng</td></tr>
+                        <tr><td>Sai</td><td>Sai</td><td>Đúng</td><td>Đúng</td></tr>
+                    </tbody>
+                </table>
+                <p>Từ bảng giá trị rõ mệnh đề $P\Rightarrow Q$ đúng không kéo theo mệnh đề đảo $Q\Rightarrow P$ đã đúng. Xét trường hợp cả hai mệnh đề này đều đúng, từ đó kéo theo định nghĩa sau.</p>
+                <div class="dn">
+                  Xét hai mệnh đề $P\Rightarrow Q$ và $Q\Rightarrow P$. Nếu cả hai mệnh đề trên đều đúng thì ta nói $P$ và $Q$ là hai <i>mệnh đề tương đương</i>, và ký hiệu $P\Leftrightarrow Q$. Mệnh đề $P\Leftrightarrow Q$ được đọc là $P$ tương đương $Q$ hoặc $Q$ tương đương $P$, hay $P$ là điều kiện cần và đủ để có $B$, hoặc $P$ khi và chỉ khi $Q$.
+                </div>
+                <div class="vidu">
+                  Ta xét hai mệnh đề:
+                  <ol>
+                    <li>"<i>Nếu tam giác $ABC$ đều thì $\widehat{A}=\widehat{B}=\widehat{C}=60^o.$</i>"</li>
+                    <li>"<i>Nếu tam giác $ABC$ có $\widehat{A}=\widehat{B}=\widehat{C}=60^o$ thì tam giác $ABC$ là tam giác đều.</i>"</li>
+                  </ol>
+                  Thấy rằng cả hai mệnh đề kéo theo trên đều đúng, do đó ta ta thể phát biểu theo mệnh đề tương đương, cụ thể:
+                  <ol>
+                    <li>"<i>Tam giác $ABC$ đều khi và chỉ khi $\widehat{A}=\widehat{B}=\widehat{C}=60^o$.</i>"</li>
+                    <li>"<i>Tam giác $ABC$ đều là điều kiện cần và đủ để $\widehat{A}=\widehat{B}=\widehat{C}=60^o$.</i>"</li>
+                  </ol>
+                </div>
+            </section>
+            <section>
+              <h2>Mệnh đề chứa ký hiệu $\forall$, $\exists$</h2>
+              <p>Trong toán học, những mệnh đề chứa biến có thể được ràng buộc bởi lượng từ như “với mọi”, “tồn tại”. Lượng từ “với mọi”, được ký hiệu $\forall$, dùng để diễn tả mệnh đề đúng cho mọi giá trị của biến; trong khi lượng từ “tồn tại”, được ký hiệu $\exists$, dùng để diễn rả rằng có ít nhất một giá trị của biến làm cho mệnh đề đúng. Hai ký hiệu này giúp ta diễn đạt các phát biểu toán học một cách ngắn gọn, chính xác và tổng quát hơn.</p>
+              <div class="dn">
+              	Xét mệnh đề chứa lượng từ "với mọi" có dạng "$A: \forall x\in D:P(x)$".
+              	Mệnh đề trên đúng nếu với mọi $x\in D$ thì $P(x)$ là mệnh đề đúng.
+              	Mệnh đề trên sai nếu tồn tại ít nhất một giá trị $x_0$ sao cho $P(x_0)$ sai.
+              </div>
+              <div class="vidu">
+              	<ol>
+              		<li> Xét mệnh đề "$A:\forall x\in\mathbb{R}: x^2+|x|\geq0$" là một mệnh đề đúng vì với mọi số thực $x$, khi đó $x^2\geq0$ và $|x|\geq0$ nên $x^2+|x|\geq0$.</li>
+              		<li> Xét mệnh đề "$B:\forall x\in\mathbb{Z}: x+1>0$ là một mệnh đề sai vì tồn tại $x=-2$ không thoả mãn $\left(-2+1=-1&lt;0\right)$.</li>
+              	</ol>
+              </div>
+              Đối ngẫu với mệnh đề chứa lượng từ "với mọi", mệnh đề chứa lượng từ "tồn tại" có dạng.
+              <div class="dn">
+              	Xét mệnh đề chứa lượng từ "tồn tại" có dạng "$A: \exists x\in D:P(x)$".
+              	Mệnh đề trên đúng nếu tồn tại $x\in D$ thì $P(x)$ là mệnh đề đúng.
+              	Mệnh đề trên sai nếu không tồn tại một giá trị $x_0$ nào sao cho $P(x_0)$ là mệnh đề đúng.
+              </div>
+              <div class="vidu">
+              	<ol>
+              		<li> Xét mệnh đề "$A:\exists x\in\mathbb{R}: x^2-3x+2=0$ là một mệnh đề đúng vì tồn tại $x=1$ và $x=2$ là nghiệm của phương trình $x^2-3x+2=0$.</li>
+              		<li> Mệnh đề "$A:\exists x\in\mathbb{R}: x^2+3<0$ là một mệnh đề sai vì ta thấy rằng không tồn tại giá trị $x$ nào thoả mãn $x^2+3<0$.</li>
+              	</ol>
+              </div>
+              <div class="chuy">
+              	<ol>
+              		<li> Mệnh đề phủ định của mệnh đề "$\forall x\in D: P(x)$" là mệnh đề "$\exists x\in D: \overline{P(x)}$.</li>
+              		<li> Mệnh đề phủ định của mệnh đề "$\exists x\in D: P(x)$" là mệnh đề "$\forall x\in D: \overline{P(x)}$.</li>
+              	</ol>
+              </div>
             </section>
         </article>
     </div>
